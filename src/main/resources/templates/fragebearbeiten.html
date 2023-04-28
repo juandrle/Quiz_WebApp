@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frage bearbeiten</title>
+</head>
+<body>
+    <form action="" method="get"></form>
+        <h1 th:text="|Bearbeite Frage Nr. ${questionnumber}|"></h1>
+       <!-- <select th:field="*{sbauswahl}"> <option th:each="sb: *{selectboxen}"
+            th:value="${sb}"
+            th:text="${sb}"/> </select> -->
+            <table>
+                <tr>
+                    <td>
+                        <!-- <select th:field="*{sbauswahl}"> <option th:each="sb: *{selectboxen}"
+                                    th:value="${sb}"
+                                    th:text="${sb}"/> </select> -->
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="frage">Frage</label>
+                        <input type="text" name="" id="">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="richtig">Richtig:</label>∏
+                        <input type="text" name="" id="">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="punkte">Punkte</label>
+                        <input type="text" name="" id="">
+                    </td>
+                </tr>
+            </table>
+        <h1>"Falsche Antworten (max. 4)"</h1> 
+            <table>
+                <tr>
+                    <td>
+                        <label for="tries">1</label>
+                        <input type="text" name="" id="">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="neu">Neu:</label>
+                        <input type="text" name="" id="">
+                    </td>
+                </tr>
+            </table>
+            <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
