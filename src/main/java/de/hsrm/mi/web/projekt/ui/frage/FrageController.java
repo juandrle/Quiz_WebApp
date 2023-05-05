@@ -34,10 +34,12 @@ public class FrageController {
     }
 
     @PostMapping("/frage/{frageNr}")
-    public String postForm(@PathVariable("frageNr") String fnr,
+    public String postForm(Model m,
+            @PathVariable("frageNr") String fnr,
             @Valid @ModelAttribute("frageFormular") FrageFormular frForm, 
             BindingResult formErrors,
             @RequestParam(name = "neu", required = false) String neu) {
+                m.addAttribute("MAXFALSCH", MAXFALSCH);
 
         frForm.getAntworten().removeIf(s -> s.equals(""));
 
