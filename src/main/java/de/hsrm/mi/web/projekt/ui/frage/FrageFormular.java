@@ -25,6 +25,7 @@ public class FrageFormular {
     @Min(0)
     @Max(18)
     private Integer punkte;
+    @NotNull
     private List<String> antworten;
 
     public List<String> getAntworten() {
@@ -46,7 +47,7 @@ public class FrageFormular {
     public List<String> getKategorien() {
         return kategorien;
     }
-
+    @NotNull
     public String getKatSelected() {
         return katSelected;
     }

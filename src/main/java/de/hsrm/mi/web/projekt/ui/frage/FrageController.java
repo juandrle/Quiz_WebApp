@@ -40,7 +40,6 @@ public class FrageController {
             BindingResult formErrors,
             @RequestParam(name = "neu", required = false) String neu) {
                 m.addAttribute("MAXFALSCH", MAXFALSCH);
-
         frForm.getAntworten().removeIf(s -> s.equals(""));
 
         if (neu != null && !neu.isEmpty()) {
