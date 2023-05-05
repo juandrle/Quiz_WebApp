@@ -42,6 +42,13 @@
                 <div class="col-sm-3">
                     <input name="punkte" th:field="*{punkte}" type="number" class="form-control" required>
                 </div>
+                <h1>Falsche Antworten (max. <span th:text="${maxFalsch}"></span>)</h1>
+                <div class="row mb-3">
+                    <label for="falschAntwort" class="col-sm-1 col-form-label">Neu: </label>
+                    <div class="col-sm-3">
+                        
+                    </div>
+                </div>
             </div>
 
             <input type="submit" value="Submit" class="btn btn-primary">
