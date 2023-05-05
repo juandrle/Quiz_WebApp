@@ -9,9 +9,15 @@ public class FrageFormular {
     private String frage;
     private String richtig;
     private int punkte;
+    private List<String> antworten;
+
+    public List<String> getAntworten() {
+        return antworten;
+    }
 
     public FrageFormular() {
         this.kategorien = new ArrayList<>();
+        this.antworten = new ArrayList<>();
 
         kategorien.add("");
         kategorien.add("Allgemeines");

@@ -42,15 +42,27 @@
                 <div class="col-sm-3">
                     <input name="punkte" th:field="*{punkte}" type="number" class="form-control" required>
                 </div>
-                <h1>Falsche Antworten (max. <span th:text="${maxFalsch}"></span>)</h1>
-                <div class="row mb-3">
-                    <label for="falschAntwort" class="col-sm-1 col-form-label">Neu: </label>
+            </div>
+
+            <br>
+            <h2>Falsche Antworten (max. <span th:text="${MAXFALSCH}"></span>)</h2>
+            <div th:if="not ${#lists.isEmpty(frageFormular.antworten)}">
+                <div class="row mb-3" th:each="antwort, status: *{antworten}">
+                    <label th:text="${status.count}" class="col-sm-1 col-form-label"></label>
                     <div class="col-sm-3">
-                        
+                        <input type="text" th:field="*{antworten[__${status.index}__]}" class="form-control">
                     </div>
                 </div>
             </div>
 
+            <div th:if="${#lists.size(frageFormular.antworten) lt MAXFALSCH}">
+                <div class="row mb-3">
+                    <label for="neu" class="col-sm-1 col-form-label">Neu:</label>
+                    <div class="col-sm-3">
+                        <input name="neu" type="text" class="form-control">
+                    </div>
+                </div>
+            </div>
             <input type="submit" value="Submit" class="btn btn-primary">
         </form>
     </div>
