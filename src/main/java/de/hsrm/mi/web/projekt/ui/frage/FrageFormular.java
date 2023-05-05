@@ -3,12 +3,33 @@ package de.hsrm.mi.web.projekt.ui.frage;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
 public class FrageFormular {
     private List<String> kategorien;
+
+    @Valid
     private String katSelected;
+
+    @NotBlank
+    @Size(min = 5, max = 80)
     private String frage;
+
+    @NotBlank
+    @Size(min = 1, max = 80)
     private String richtig;
-    private int punkte;
+
+    @Min(0)
+    @Max(18)
+    private Integer punkte;
+
+    @NotNull
+    @Size(min = 1)
     private List<String> antworten;
 
     public List<String> getAntworten() {
@@ -19,7 +40,7 @@ public class FrageFormular {
         this.kategorien = new ArrayList<>();
         this.antworten = new ArrayList<>();
 
-        kategorien.add("");
+        kategorien.add(null);
         kategorien.add("Allgemeines");
         kategorien.add("Zahlen");
         kategorien.add("Sachen");
@@ -55,11 +76,11 @@ public class FrageFormular {
         this.richtig = antwortRichtig;
     }
 
-    public int getPunkte() {
+    public Integer getPunkte() {
         return punkte;
     }
 
-    public void setPunkte(int punkte) {
+    public void setPunkte(Integer punkte) {
         this.punkte = punkte;
     }
 }
