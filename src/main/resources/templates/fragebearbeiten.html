@@ -23,6 +23,7 @@
                     <select class="form-select" name="kategorie" th:field="*{katSelected}">
                         <option th:each="kat : *{kategorien}" th:value="${kat}" th:text="${kat}" />
                     </select>
+                    
                 </div>
             </div>
             <div class="row mb-3">
@@ -36,12 +37,14 @@
                 <label for=richtig class="col-sm-1 col-form-label">Richtig</label>
                 <div class="col-sm-3">
                     <input name="richtig" th:field="*{richtig}" type="text" class="form-control">
+                    <p th:if="${#fields.hasErrors('richtig')}" th:errors="*{richtig}">sfdgsdfg</p>
                 </div>
             </div>
             <div class="row mb-3">
                 <label for="punkte" class="col-sm-1 col-form-label">Punkte</label>
                 <div class="col-sm-3">
                     <input name="punkte" th:field="*{punkte}" type="number" class="form-control">
+                    <p th:if="${#fields.hasErrors('punkte')}" th:errors="*{punkte}">sfdgsdfg</p>
                 </div>
             </div>
 
