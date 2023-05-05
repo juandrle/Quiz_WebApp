@@ -59,7 +59,7 @@
                 </div>
             </div>
 
-            <div th:if="${#lists.size(frageFormular.antworten) lt MAXFALSCH}">
+            <div th:if="${#lists.size(frageFormular.antworten)} lt ${MAXFALSCH}">
                 <div class="row mb-3">
                     <label for="neu" class="col-sm-1 col-form-label">Neu:</label>
                     <div class="col-sm-3">

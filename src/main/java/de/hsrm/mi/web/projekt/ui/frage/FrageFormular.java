@@ -14,22 +14,17 @@ public class FrageFormular {
     private List<String> kategorien;
 
     @Valid
+    @NotNull
     private String katSelected;
-
     @NotBlank
     @Size(min = 5, max = 80)
     private String frage;
-
     @NotBlank
     @Size(min = 1, max = 80)
     private String richtig;
-
     @Min(0)
     @Max(18)
     private Integer punkte;
-
-    @NotNull
-    @Size(min = 1)
     private List<String> antworten;
 
     public List<String> getAntworten() {
