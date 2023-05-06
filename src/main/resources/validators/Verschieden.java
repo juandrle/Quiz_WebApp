@@ -18,7 +18,7 @@ import validators.Verschieden.VerschiedenValidator;
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = VerschiedenValidator.class)
 public @interface Verschieden {
-    String message() default "Liste enthält doppelte Strings";
+    String message() default "Liste darf keine Duplikate enthalten";
 
     Class<?>[] groups() default {};
 
