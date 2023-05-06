@@ -39,6 +39,7 @@ public class FrageController {
             @Valid @ModelAttribute("frageFormular") FrageFormular frForm, 
             BindingResult formErrors,
             @RequestParam(name = "neu", required = false) String neu) {
+                logger.debug("katSelected = {}", frForm.getKatSelected());
                 m.addAttribute("MAXFALSCH", MAXFALSCH);
         frForm.getAntworten().removeIf(s -> s.equals(""));
 

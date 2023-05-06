@@ -2,19 +2,17 @@ package de.hsrm.mi.web.projekt.ui.frage;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import jakarta.validation.Valid;
+import org.springframework.validation.annotation.Validated;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-
+@Validated
 public class FrageFormular {
     private List<String> kategorien;
-
-    @Valid
-    @NotNull
+    
+    @NotBlank
     private String katSelected;
     @NotBlank
     @Size(min = 5, max = 80)
@@ -24,8 +22,8 @@ public class FrageFormular {
     private String richtig;
     @Min(0)
     @Max(18)
-    private Integer punkte;
     @NotNull
+    private Integer punkte;
     private List<String> antworten;
 
     public List<String> getAntworten() {

@@ -16,8 +16,8 @@
                 border-color: red;
             }
         </style>
-<!-- to Do:
-            error message bei dropdown wenn NULL
+<!-- to Do Aufgabe 1:
+            CSS bei select red border bugs out
             error message bei falsche Fragen wenn NULL -->
 </head>
 
@@ -32,8 +32,8 @@
                 <div class="col-sm-3">
                     <select class="form-select" name="kategorie" th:field="*{katSelected}">
                         <option th:each="kat : *{kategorien}" th:value="${kat}" th:text="${kat}" />
-                        <p th:if="${#fields.hasErrors('katSelected')}" th:errors="*{katSelected}" class="error">sfdgsdfg</p>
                     </select>
+                    <p th:if="${#fields.hasErrors('katSelected')}" th:errors="*{katSelected}" class="error">sfdgsdfg</p>
                     
                 </div>
             </div>
