@@ -61,6 +61,7 @@
 
             <br>
             <h2>Falsche Antworten (max. <span th:text="${MAXFALSCH}"></span>)</h2>
+            <p th:if="${#fields.hasErrors('antworten')}" th:errors="*{antworten}" class="error">sfdgsdfg</p>
             <div th:if="not ${#lists.isEmpty(frageFormular.antworten)}">
                 <div class="row mb-3" th:each="antwort, status: *{antworten}">
                     <label th:text="${status.count}" class="col-sm-1 col-form-label"></label>
