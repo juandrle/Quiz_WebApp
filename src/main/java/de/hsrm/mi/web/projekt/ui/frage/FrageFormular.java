@@ -30,9 +30,18 @@ public class FrageFormular {
     @Valid
     @Verschieden
     private List<String> antworten;
+    @NotBlank
+    private String neu;
 
     public List<String> getAntworten() {
         return antworten;
+    }
+
+    public String getNeu() {
+        return neu;
+    }
+    public void setNeu(String neu) {
+        this.neu = neu;
     }
 
     public FrageFormular() {

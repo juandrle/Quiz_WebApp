@@ -17,8 +17,7 @@
             }
         </style>
 <!-- to Do Aufgabe 1:
-            CSS bei select red border bugs out
-            error message bei falsche Fragen wenn NULL -->
+            CSS bei den Form inputs red border bugs out -->
 </head>
 
 <body>
@@ -75,7 +74,8 @@
                 <div class="row mb-3">
                     <label for="neu" class="col-sm-1 col-form-label">Neu:</label>
                     <div class="col-sm-3">
-                        <input name="neu" type="text" class="form-control">
+                        <input name="neu" type="text" class="form-control" th:field="*{neu}" th:class="${#fields.hasErrors('neu')}? errorInput">
+                        <p th:if="${#fields.hasErrors('neu')}" th:errors="*{neu}" class="error">sfdgsdfg</p>
                     </div>
                 </div>
             </div>

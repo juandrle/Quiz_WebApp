@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import jakarta.validation.Valid;
@@ -37,14 +36,14 @@ public class FrageController {
     public String postForm(Model m,
             @PathVariable("frageNr") String fnr,
             @Valid @ModelAttribute("frageFormular") FrageFormular frForm, 
-            BindingResult formErrors,
-            @RequestParam(name = "neu", required = false) String neu) {
+            BindingResult formErrors) {
                 logger.debug("katSelected = {}", frForm.getKatSelected());
                 m.addAttribute("MAXFALSCH", MAXFALSCH);
         frForm.getAntworten().removeIf(s -> s.equals(""));
 
-        if (neu != null && !neu.isEmpty()) {
-            frForm.getAntworten().add(neu);
+        if (frForm.getNeu() != null && !frForm.getNeu().isEmpty()) {
+            frForm.getAntworten().add(frForm.getNeu());
+            frForm.setNeu(null);
         }
 
         return "fragebearbeiten";
