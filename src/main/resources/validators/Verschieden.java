@@ -28,8 +28,6 @@ public @interface Verschieden {
         public boolean isValid(List<String> values, ConstraintValidatorContext context) {
             HashSet<String> uniqueValues = new HashSet<>(values.stream().map(String::toLowerCase).collect(Collectors.toList()));
             if (uniqueValues.size() != values.size()) {
-                context.disableDefaultConstraintViolation();
-                context.buildConstraintViolationWithTemplate("Liste darf keine Duplikate enthalten").addConstraintViolation();
                 return false;
             }
             return true;

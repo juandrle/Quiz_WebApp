@@ -1,0 +1,13 @@
+propertyname;de;en;nl
+frageformular.fragetext;bitte geben Sie eine Frage ein;please enter a question;geef en vraag aan, aub.
+frageformular.kategorie;bitte wählen Sie eine Kategorie für Ihre Frage;please choose a category for your question;kies een categorie voor uw vraag
+frageformular.titel.bearbeiten;Bearbeite Frage Nr. {0};Edit question No. {0};Vraag {0} bewerken
+frageformular.label.kategorie;Kategorie;Category;Rubriek
+frageformular.label.frage;Frage;Question;Vraag
+frageformular.label.richtigeantwort;Richtig;Correct;Juist
+frageformular.label.punkte;Punkte;Points;Punten
+frageformular.titel.falscheantworten;Falsche Antworten (max. {0});Wrong answers (max. {0});Verkeerde antwoorden  (max. {0})
+frageformular.label.neuefalschantwort;Neu;New;Nieuw
+frageformular.label.submit;abschicken;send;verzenden
+frageformular.fehler.falschantworten.leer;bitte geben Sie mindestens eine Falschantwort an;please enter at least one wrong choice;geef ten minste een verkeerd antwoord
+frageformular.fehler.falschantworten.duplikate;bitte geben Sie unterschiedliche Antworten ein;please enter different choices;geef verschillende antwoorden, aub
