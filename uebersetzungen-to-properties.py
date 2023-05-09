@@ -1,5 +1,4 @@
 import os
-import shutil
 
 with open("uebersetzungen.csv") as my_file:
     s = my_file.read()
