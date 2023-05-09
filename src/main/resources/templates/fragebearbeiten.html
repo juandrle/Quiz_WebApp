@@ -23,11 +23,10 @@
 <body>
     <div class="container-fluid">
         <br>
-        <h1>Bearbeite Frage Nr. <span th:text="${frageNr}"></span></h1>
-
+        <h1><span th:text="#{frageformular.titel.bearbeiten(${frageNr})}"></span></h1>
         <form th:action="@{#}" th:method="POST" th:object="${frageFormular}">
             <div class="row mb-3">
-                <label for="kategorie" class="col-sm-1 col-form-label">Kategorie</label>
+                <label for="kategorie" class="col-sm-1 col-form-label" th:text="#{frageformular.label.kategorie}"></label>
                 <div class="col-sm-3">
                     <select class="form-select" name="kategorie" th:field="*{katSelected}">
                         <option th:each="kat : *{kategorien}" th:value="${kat}" th:text="${kat}" />
@@ -37,21 +36,21 @@
                 </div>
             </div>
             <div class="row mb-3">
-                <label for="frage" class="col-sm-1 col-form-label">Frage</label>
+                <label for="frage" class="col-sm-1 col-form-label" th:text="#{frageformular.label.frage}"></label>
                 <div class="col-sm-3">
                     <input name="frage" th:field="*{frage}" type="text" class="form-control" th:class="${#fields.hasErrors('frage')}? errorInput">
                     <p th:if="${#fields.hasErrors('frage')}" th:errors="*{frage}" class="error">sfdgsdfg</p>
                 </div>
             </div>
             <div class="row mb-3">
-                <label for=richtig class="col-sm-1 col-form-label">Richtig</label>
+                <label for=richtig class="col-sm-1 col-form-label" th:text="#{frageformular.label.richtigeantwort}"></label>
                 <div class="col-sm-3">
                     <input name="richtig" th:field="*{richtig}" type="text" class="form-control" th:class="${#fields.hasErrors('richtig')}? errorInput">
                     <p th:if="${#fields.hasErrors('richtig')}" th:errors="*{richtig}" class="error">sfdgsdfg</p>
                 </div>
             </div>
             <div class="row mb-3">
-                <label for="punkte" class="col-sm-1 col-form-label">Punkte</label>
+                <label for="punkte" class="col-sm-1 col-form-label" th:text="#{frageformular.label.punkte}">Punkte</label>
                 <div class="col-sm-3">
                     <input name="punkte" th:field="*{punkte}" type="number" class="form-control" th:class="${#fields.hasErrors('punkte')}? errorInput">
                     <p th:if="${#fields.hasErrors('punkte')}" th:errors="*{punkte}" class="error">sfdgsdfg</p>
@@ -59,7 +58,7 @@
             </div>
 
             <br>
-            <h2>Falsche Antworten (max. <span th:text="${MAXFALSCH}"></span>)</h2>
+            <h2><span th:text="#{frageformular.titel.falscheantworten(${MAXFALSCH})}"></span></h2>
             <p th:if="${#fields.hasErrors('antworten')}" th:errors="*{antworten}" class="error">sfdgsdfg</p>
             <div th:if="not ${#lists.isEmpty(frageFormular.antworten)}">
                 <div class="row mb-3" th:each="antwort, status: *{antworten}">
@@ -72,7 +71,7 @@
 
             <div th:if="${#lists.size(frageFormular.antworten)} lt ${MAXFALSCH}">
                 <div class="row mb-3">
-                    <label for="neu" class="col-sm-1 col-form-label">Neu:</label>
+                    <label for="neu" class="col-sm-1 col-form-label" th:text="#{frageformular.label.neuefalschantwort}"></label>
                     <div class="col-sm-3">
                         <input name="neu" type="text" class="form-control" th:field="*{neu}" th:class="${#fields.hasErrors('neu')}? errorInput">
                         <p th:if="${#fields.hasErrors('neu')}" th:errors="*{neu}" class="error">sfdgsdfg</p>
