@@ -1,5 +1,7 @@
 package de.hsrm.mi.web.projekt.ui.frage;
 
+import java.util.Locale;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -25,7 +27,8 @@ public class FrageController {
     }
 
     @GetMapping("/frage/{frageNr}")
-    public String getForm(Model m, @PathVariable("frageNr") String fnr) {
+    public String getForm(Model m, @PathVariable("frageNr") String fnr, Locale locale) {
+        m.addAttribute("sprache", locale.getDisplayLanguage());
         m.addAttribute("frageNr", fnr);
         m.addAttribute("MAXFALSCH", MAXFALSCH);
 

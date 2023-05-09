@@ -15,9 +15,9 @@ import validators.Verschieden;
 public class FrageFormular {
     private List<String> kategorien;
     
-    @NotBlank
+    @NotBlank(message = "{frageformular.kategorie}")
     private String katSelected;
-    @NotBlank
+    @NotBlank(message = "{frageformular.fragetext}")
     @Size(min = 5, max = 80)
     private String frage;
     @NotBlank
@@ -28,9 +28,9 @@ public class FrageFormular {
     @NotNull
     private Integer punkte;
     @Valid
-    @Verschieden
+    @Verschieden(message = "{frageformular.fehler.falschantworten.duplikate}")
     private List<String> antworten;
-    @NotBlank
+    @NotBlank(message = "{frageformular.fehler.falschantworten.leer}")
     private String neu;
 
     public List<String> getAntworten() {
