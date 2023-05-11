@@ -2,51 +2,58 @@ package de.hsrm.mi.web.projekt.ui.frage;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.springframework.validation.annotation.Validated;
 
-import jakarta.validation.Valid;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import validators.Verschieden;
-@Validated
+
 public class FrageFormular {
     private List<String> kategorien;
-    
-    @NotBlank(message = "{frageformular.kategorie}")
-    private String katSelected;
-    @NotBlank(message = "{frageformular.fragetext}")
+
+    @NotNull
+    @NotBlank
+    private String kategorie;
+
+    @NotBlank
     @Size(min = 5, max = 80)
     private String frage;
+
     @NotBlank
     @Size(min = 1, max = 80)
-    private String richtig;
-    @Min(0)
-    @Max(18)
+    private String richtigeAntwort;
+
     @NotNull
+    @Min(0)
+    @Max(17)
     private Integer punkte;
-    @Valid
+
+    @NotEmpty(message = "{frageformular.fehler.falschantworten.leer}")
     @Verschieden(message = "{frageformular.fehler.falschantworten.duplikate}")
-    private List<String> antworten;
-    @NotBlank(message = "{frageformular.fehler.falschantworten.leer}")
-    private String neu;
+    private List<String> falschantworten;
 
-    public List<String> getAntworten() {
-        return antworten;
+    @NotNull
+    @Size(max = 80)
+    private String neueFalschantwort;
+
+    public String getNeueFalschantwort() {
+        return neueFalschantwort;
     }
 
-    public String getNeu() {
-        return neu;
+    public void setNeueFalschantwort(String neu) {
+        this.neueFalschantwort = neu;
     }
-    public void setNeu(String neu) {
-        this.neu = neu;
+
+    public List<String> getFalschantworten() {
+        return falschantworten;
     }
 
     public FrageFormular() {
         this.kategorien = new ArrayList<>();
-        this.antworten = new ArrayList<>();
+        this.falschantworten = new ArrayList<>();
 
         kategorien.add(null);
         kategorien.add("Allgemeines");
@@ -59,13 +66,13 @@ public class FrageFormular {
     public List<String> getKategorien() {
         return kategorien;
     }
-    @NotNull
-    public String getKatSelected() {
-        return katSelected;
+
+    public String getKategorie() {
+        return kategorie;
     }
 
-    public void setKatSelected(String katSelected) {
-        this.katSelected = katSelected;
+    public void setKategorie(String katSelected) {
+        this.kategorie = katSelected;
     }
 
     public String getFrage() {
@@ -76,12 +83,12 @@ public class FrageFormular {
         this.frage = frage;
     }
 
-    public String getRichtig() {
-        return richtig;
+    public String getRichtigeAntwort() {
+        return richtigeAntwort;
     }
 
-    public void setRichtig(String antwortRichtig) {
-        this.richtig = antwortRichtig;
+    public void setRichtigeAntwort(String antwortRichtig) {
+        this.richtigeAntwort = antwortRichtig;
     }
 
     public Integer getPunkte() {

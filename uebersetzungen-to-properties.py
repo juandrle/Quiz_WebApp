@@ -1,35 +1,42 @@
-import os
 
-with open("uebersetzungen.csv") as my_file:
-    s = my_file.read()
-lang = 1
+CSV = "uebersetzungen.csv"
+PATH = "src/main/resources/"
+FILENAME = PATH + "messages_{language}.properties"
+DEFAULT_FILENAME = PATH + "messages.properties"
 
-lines = s.split('\n')
-languages = lines[0].split(';')
-for header in languages:
-    if lang == len(languages):
-        break
-    if os.path.exists(f'src/main/resources/messages_{languages[lang]}.properties'):
-        os.remove(f'src/main/resources/messages_{languages[lang]}.properties')
-    temp = open(f'src/main/resources/messages_{languages[lang]}.properties', 'w')
-    i = 0
-    for line in s.split('\n'):
-        for part in line.split(';'):
-            if i == len(languages):
-                i = 0
-            if i == 0 and part not in languages and part != '':
-                temp.write(part + '=')
-            if i == lang and part not in languages:
-                temp.write(part + '\n')
-            i += 1    
-    lang += 1
-    temp.close()
-temp = open('src/main/resources/messages_en.properties', 'r')
-if os.path.exists('src/main/resources/messages.properties'):
-    os.remove('src/main/resources/messages.properties')
-default = open('src/main/resources/messages.properties', 'wt')
-line = temp.read()
-default.write(str(line))
-temp.close()
-default.close()    
-        
+# Change default language to your liking
+DEFAULT_LANGUAGE = "de"
+
+files = []
+
+with open(CSV) as t:
+    lines = t.readlines()
+    firstline = lines[0].split(";")
+
+    for lang in firstline[1:]:
+        lang = lang.rstrip()
+        files.append((open(FILENAME.format(language=lang), 'w'), lang))
+
+    defaultfile = open(DEFAULT_FILENAME, "w")
+
+    for line in lines[1:]:
+        line = line.split(";")
+
+        property_name = line[0]
+        translations = line[1:]
+
+        for ftup, transl in zip(files, translations):
+            f, lang = ftup
+            transl = transl.rstrip()
+
+            if (lang == DEFAULT_LANGUAGE):
+                defaultfile.write("{prop}={transl}\n".format(
+                    prop=property_name, transl=transl))
+
+            f.write("{prop}={transl}\n".format(
+                prop=property_name, transl=transl))
+
+for f, l in files:
+    f.close()
+
+defaultfile.close()

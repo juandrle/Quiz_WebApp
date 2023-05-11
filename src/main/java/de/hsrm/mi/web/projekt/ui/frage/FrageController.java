@@ -16,37 +16,38 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import jakarta.validation.Valid;
 
 @Controller
-@SessionAttributes(names = { "frageFormular" })
+@SessionAttributes(names = { "frageformular" })
 public class FrageController {
     Logger logger = LoggerFactory.getLogger(FrageController.class);
     final int MAXFALSCH = 4;
 
-    @ModelAttribute("frageFormular")
+    @ModelAttribute("frageformular")
     public void initFormular(Model m) {
-        m.addAttribute("frageFormular", new FrageFormular());
+        m.addAttribute("frageformular", new FrageFormular());
     }
 
-    @GetMapping("/frage/{frageNr}")
-    public String getForm(Model m, @PathVariable("frageNr") String fnr, Locale locale) {
+    @GetMapping("/frage/{fragenr}")
+    public String getForm(Model m, @PathVariable("fragenr") String frageNr, Locale locale) {
         m.addAttribute("sprache", locale.getDisplayLanguage());
-        m.addAttribute("frageNr", fnr);
+        m.addAttribute("fragenr", frageNr);
         m.addAttribute("MAXFALSCH", MAXFALSCH);
 
         return "fragebearbeiten";
     }
 
-    @PostMapping("/frage/{frageNr}")
-    public String postForm(Model m,
-            @PathVariable("frageNr") String fnr,
-            @Valid @ModelAttribute("frageFormular") FrageFormular frForm, 
+    @PostMapping("/frage/{fragenr}")
+    public String postForm(Model m, @PathVariable("fragenr") String frageNr,
+            @Valid @ModelAttribute("frageformular") FrageFormular frageForm,
             BindingResult formErrors) {
-                logger.debug("katSelected = {}", frForm.getKatSelected());
-                m.addAttribute("MAXFALSCH", MAXFALSCH);
-        frForm.getAntworten().removeIf(s -> s.equals(""));
 
-        if (frForm.getNeu() != null && !frForm.getNeu().isEmpty()) {
-            frForm.getAntworten().add(frForm.getNeu());
-            frForm.setNeu(null);
+        m.addAttribute("MAXFALSCH", MAXFALSCH);
+
+        frageForm.getFalschantworten().removeIf(s -> s.equals(""));
+
+        String neu = frageForm.getNeueFalschantwort();
+        if (neu != null && !neu.isBlank() && !frageForm.getFalschantworten().contains(neu)) {
+            frageForm.getFalschantworten().add(frageForm.getNeueFalschantwort());
+            frageForm.setNeueFalschantwort(null);
         }
 
         return "fragebearbeiten";
