@@ -3,6 +3,7 @@ package de.hsrm.mi.web.projekt.ui.frage;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.hsrm.mi.web.projekt.entities.frage.Frage;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -39,21 +40,10 @@ public class FrageFormular {
     @Size(max = 80)
     private String neueFalschantwort;
 
-    public String getNeueFalschantwort() {
-        return neueFalschantwort;
-    }
-
-    public void setNeueFalschantwort(String neu) {
-        this.neueFalschantwort = neu;
-    }
-
-    public List<String> getFalschantworten() {
-        return falschantworten;
-    }
-
     public FrageFormular() {
         this.kategorien = new ArrayList<>();
         this.falschantworten = new ArrayList<>();
+        this.falschantworten = null;
 
         kategorien.add(null);
         kategorien.add("Allgemeines");
@@ -61,6 +51,22 @@ public class FrageFormular {
         kategorien.add("Sachen");
         kategorien.add("Orte");
         kategorien.add("Ereignisse");
+    }
+
+    public void toFrage(Frage f) {
+        f.setKategorie(kategorie);
+        f.setFrage(frage);
+        f.setRichtigeAntwort(richtigeAntwort);
+        f.setPunkte(punkte);
+        f.setFalschantworten(falschantworten);
+    }
+
+    public void fromFrage(Frage f) {
+        this.kategorie = f.getKategorie();
+        this.frage = f.getFrage();
+        this.richtigeAntwort = f.getRichtigeAntwort();
+        this.punkte = f.getPunkte();
+        this.falschantworten = f.getFalschantworten();        
     }
 
     public List<String> getKategorien() {
@@ -97,5 +103,17 @@ public class FrageFormular {
 
     public void setPunkte(Integer punkte) {
         this.punkte = punkte;
+    }
+
+    public String getNeueFalschantwort() {
+        return neueFalschantwort;
+    }
+
+    public void setNeueFalschantwort(String neu) {
+        this.neueFalschantwort = neu;
+    }
+
+    public List<String> getFalschantworten() {
+        return falschantworten;
     }
 }
