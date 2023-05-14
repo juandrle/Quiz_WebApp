@@ -12,12 +12,12 @@ frageformular.label.neueFalschantwort;Neu;New;Nieuw
 frageformular.label.submit;Abschicken;Send;Verzenden
 frageformular.fehler.falschantworten.leer;bitte geben Sie mindestens eine Falschantwort an;please enter at least one wrong choice;geef ten minste een verkeerd antwoord
 frageformular.fehler.falschantworten.duplikate;bitte geben Sie unterschiedliche Antworten ein;please enter different choices;geef verschillende antwoorden, aub
-frageformular.zu.frageliste;Frageliste;list of questions;vragenlijst
-frageliste.eintrag.bearbeiten;bearbeiten;edit;bewerken
-frageliste.neue.frage;Neue Frage;new question;nieuwe vraag
+frageformular.zu.frageliste;Frageliste;List of questions;Vragenlijst
+frageliste.eintrag.bearbeiten;Bearbeiten;Edit;Bewerken
+frageliste.neue.frage;Neue Frage;New question;Nieuwe vraag
 frageliste.spalte.fragetext;Frage;Question;Vraag
 frageliste.spalte.id;ID;ID;ID
 frageliste.spalte.kategorie;Kategorie;Category;Rubriek
 frageliste.spalte.punkte;Punkte;Points;Punten
 frageliste.titel;Fragesammlung;collection of questions;verzameling van vragen
-frageliste.eintrag.loeschen;löschen;delete;verwijderen
+frageliste.eintrag.loeschen;Löschen;Delete;Verwijderen

@@ -32,6 +32,24 @@ public class FrageController {
         m.addAttribute("frageformular", new FrageFormular());
     }
 
+    @GetMapping("/frage")
+    public String getFragesammlung(Model m, Locale locale) {
+        m.addAttribute("sprache", locale.getDisplayLanguage());
+
+        m.addAttribute("frageliste", frageService.holeAlleFragen());
+
+        return "frageliste";
+    }
+
+    @GetMapping("/frage/{fragenr}/del")
+    public String getDelFrageSammlung(Model m,
+            @PathVariable("fragenr") int n) {
+
+        frageService.loescheFrageMitId(n);
+
+        return "redirect:/frage";
+    }
+
     @GetMapping("/frage/{fragenr}")
     public String getForm(Model m,
             @PathVariable("fragenr") int n,

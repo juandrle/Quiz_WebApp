@@ -41,7 +41,7 @@ public class FrageServiceImpl implements FrageService {
         }
         return f;
     }
-    
+
     @Override
     public Frage speichereFrage(Frage f) {
         logger.info("Speichere Frage: " + f);
