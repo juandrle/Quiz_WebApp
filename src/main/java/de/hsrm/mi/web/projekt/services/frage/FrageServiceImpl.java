@@ -41,12 +41,11 @@ public class FrageServiceImpl implements FrageService {
         }
         return f;
     }
-
+    
     @Override
     public Frage speichereFrage(Frage f) {
         logger.info("Speichere Frage: " + f);
         Frage s = frageRepo.save(f);
-        logger.info("Frage erfolgreich gespeichert.");
         return s;
     }
 
@@ -54,6 +53,5 @@ public class FrageServiceImpl implements FrageService {
     public void loescheFrageMitId(long id) {
         logger.info("Lösche Frage mit ID: " + id);
         frageRepo.deleteById(id);
-        logger.info("Frage mit ID " + id + " gelöscht.");
     }
 }

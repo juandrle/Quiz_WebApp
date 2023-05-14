@@ -31,7 +31,7 @@ public class Frage implements Serializable {
 
     @NotBlank
     @Size(min = 5, max = 80)
-    private String frage;
+    private String fragetext;
 
     @NotBlank
     @Size(min = 1, max = 80)
@@ -43,6 +43,8 @@ public class Frage implements Serializable {
     private Integer punkte;
 
     @ElementCollection
+    // Problem: NotEmpty wird beim aller ersten Submit einer neuen Falschantwort
+    // angezeigt
     @NotEmpty(message = "{frageformular.fehler.falschantworten.leer}")
     @Verschieden(message = "{frageformular.fehler.falschantworten.duplikate}")
     private List<String> falschantworten;
@@ -63,12 +65,12 @@ public class Frage implements Serializable {
         this.kategorie = kategorie;
     }
 
-    public String getFrage() {
-        return frage;
+    public String getFragetext() {
+        return fragetext;
     }
 
-    public void setFrage(String frage) {
-        this.frage = frage;
+    public void setFragetext(String frage) {
+        this.fragetext = frage;
     }
 
     public String getRichtigeAntwort() {

@@ -21,7 +21,7 @@ public class FrageFormular {
 
     @NotBlank
     @Size(min = 5, max = 80)
-    private String frage;
+    private String fragetext;
 
     @NotBlank
     @Size(min = 1, max = 80)
@@ -32,6 +32,7 @@ public class FrageFormular {
     @Max(17)
     private Integer punkte;
 
+    
     @NotEmpty(message = "{frageformular.fehler.falschantworten.leer}")
     @Verschieden(message = "{frageformular.fehler.falschantworten.duplikate}")
     private List<String> falschantworten;
@@ -56,7 +57,7 @@ public class FrageFormular {
     public void toFrage(Frage f) {
         // befuellt f mit Formularinhalt
         f.setKategorie(kategorie);
-        f.setFrage(frage);
+        f.setFragetext(fragetext);
         f.setRichtigeAntwort(richtigeAntwort);
         f.setPunkte(punkte);
         f.setFalschantworten(falschantworten);
@@ -65,7 +66,7 @@ public class FrageFormular {
     public void fromFrage(Frage f) {
         // fuellt Formularinhalt aus f
         this.kategorie = f.getKategorie();
-        this.frage = f.getFrage();
+        this.fragetext = f.getFragetext();
         this.richtigeAntwort = f.getRichtigeAntwort();
         this.punkte = f.getPunkte();
         this.falschantworten = f.getFalschantworten();
@@ -83,12 +84,12 @@ public class FrageFormular {
         this.kategorie = katSelected;
     }
 
-    public String getFrage() {
-        return frage;
+    public String getFragetext() {
+        return fragetext;
     }
 
-    public void setFrage(String frage) {
-        this.frage = frage;
+    public void setFragetext(String frage) {
+        this.fragetext = frage;
     }
 
     public String getRichtigeAntwort() {

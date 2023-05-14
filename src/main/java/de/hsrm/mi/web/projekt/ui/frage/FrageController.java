@@ -4,6 +4,7 @@ import java.util.Locale;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,34 +14,53 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import de.hsrm.mi.web.projekt.entities.frage.Frage;
+import de.hsrm.mi.web.projekt.services.frage.FrageServiceImpl;
 import jakarta.validation.Valid;
 
 @Controller
-@SessionAttributes(names = { "frageformular" })
+@SessionAttributes(names = { "frageformular", "frage" })
 public class FrageController {
-    Logger logger = LoggerFactory.getLogger(FrageController.class);
     private static final int MAXFALSCH = 4;
+    Logger logger = LoggerFactory.getLogger(FrageController.class);
+
+    @Autowired
+    private FrageServiceImpl frageService;
 
     @ModelAttribute("frageformular")
-    public void initFormular(Model m) {
+    public void initFrageFormular(Model m) {
         m.addAttribute("frageformular", new FrageFormular());
     }
 
     @GetMapping("/frage/{fragenr}")
-    public String getForm(Model m, @PathVariable("fragenr") String frageNr, Locale locale) {
+    public String getForm(Model m,
+            @PathVariable("fragenr") int n,
+            Locale locale) {
+
         m.addAttribute("sprache", locale.getDisplayLanguage());
-        m.addAttribute("fragenr", frageNr);
+        m.addAttribute("fragenr", n);
         m.addAttribute("MAXFALSCH", MAXFALSCH);
+
+        FrageFormular frageForm = new FrageFormular();
+        Frage frage = new Frage();
+
+        if (n > 0) {
+            frage = frageService.holeFrageMitId(n).get();
+            frageForm.fromFrage(frage);
+        }
+
+        m.addAttribute("frageformular", frageForm);
+        m.addAttribute("frage", frage);
 
         return "fragebearbeiten";
     }
 
     @PostMapping("/frage/{fragenr}")
-    public String postForm(Model m, @PathVariable("fragenr") String frageNr,
+    public String postForm(Model m,
+            @PathVariable("fragenr") int n,
+            @ModelAttribute("frage") Frage frage,
             @Valid @ModelAttribute("frageformular") FrageFormular frageForm,
             BindingResult formErrors) {
-
-        m.addAttribute("MAXFALSCH", MAXFALSCH);
 
         frageForm.getFalschantworten().removeIf(s -> s.equals(""));
 
@@ -50,6 +70,28 @@ public class FrageController {
             frageForm.setNeueFalschantwort(null);
         }
 
-        return "fragebearbeiten";
+        m.addAttribute("MAXFALSCH", MAXFALSCH);
+
+        if (formErrors.hasErrors()) {
+            return "fragebearbeiten";
+        }
+
+        // Write data from FrageFormular to Frage
+        frageForm.toFrage(frage);
+
+        try {
+            // Save Frage in database and set session attribute "frage" to returned Frage
+            // Reason: optimistic lock -> @Version, conflicts only handled upon occurance
+            frage = frageService.speichereFrage(frage);
+            m.addAttribute("frage", frage);
+
+            return "redirect:/frage/" + frage.getId();
+        } catch (RuntimeException e) {
+            String errorMessage = "Failed to save Frage: ";
+            m.addAttribute("info", errorMessage + e.getMessage());
+            logger.info(errorMessage + e.getMessage());
+
+            return "fragebearbeiten";
+        }
     }
 }
