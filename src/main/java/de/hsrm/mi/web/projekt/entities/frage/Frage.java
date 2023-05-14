@@ -54,4 +54,44 @@ public class Frage implements Serializable {
     public long getVersion() {
         return version;
     }
+
+    public String getKategorie() {
+        return kategorie;
+    }
+
+    public void setKategorie(String kategorie) {
+        this.kategorie = kategorie;
+    }
+
+    public String getFrage() {
+        return frage;
+    }
+
+    public void setFrage(String frage) {
+        this.frage = frage;
+    }
+
+    public String getRichtigeAntwort() {
+        return richtigeAntwort;
+    }
+
+    public void setRichtigeAntwort(String richtigeAntwort) {
+        this.richtigeAntwort = richtigeAntwort;
+    }
+
+    public Integer getPunkte() {
+        return punkte;
+    }
+
+    public void setPunkte(Integer punkte) {
+        this.punkte = punkte;
+    }
+
+    public List<String> getFalschantworten() {
+        return falschantworten;
+    }
+
+    public void setFalschantworten(List<String> falschantworten) {
+        this.falschantworten = falschantworten;
+    }
 }

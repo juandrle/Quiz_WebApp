@@ -43,7 +43,7 @@ public class FrageFormular {
     public FrageFormular() {
         this.kategorien = new ArrayList<>();
         this.falschantworten = new ArrayList<>();
-        this.falschantworten = null;
+        this.neueFalschantwort = null;
 
         kategorien.add(null);
         kategorien.add("Allgemeines");
@@ -54,6 +54,7 @@ public class FrageFormular {
     }
 
     public void toFrage(Frage f) {
+        // befuellt f mit Formularinhalt
         f.setKategorie(kategorie);
         f.setFrage(frage);
         f.setRichtigeAntwort(richtigeAntwort);
@@ -62,11 +63,12 @@ public class FrageFormular {
     }
 
     public void fromFrage(Frage f) {
+        // fuellt Formularinhalt aus f
         this.kategorie = f.getKategorie();
         this.frage = f.getFrage();
         this.richtigeAntwort = f.getRichtigeAntwort();
         this.punkte = f.getPunkte();
-        this.falschantworten = f.getFalschantworten();        
+        this.falschantworten = f.getFalschantworten();
     }
 
     public List<String> getKategorien() {

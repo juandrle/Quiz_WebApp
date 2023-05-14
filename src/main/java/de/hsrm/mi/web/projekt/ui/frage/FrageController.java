@@ -19,7 +19,7 @@ import jakarta.validation.Valid;
 @SessionAttributes(names = { "frageformular" })
 public class FrageController {
     Logger logger = LoggerFactory.getLogger(FrageController.class);
-    final int MAXFALSCH = 4;
+    private static final int MAXFALSCH = 4;
 
     @ModelAttribute("frageformular")
     public void initFormular(Model m) {

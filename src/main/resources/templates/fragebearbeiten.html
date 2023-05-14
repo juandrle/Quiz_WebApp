@@ -24,7 +24,7 @@
             <h1 th:text="#{frageformular.titel.bearbeiten(${fragenr})}" />
             <div class="left-div">
                 <table class="table table-hover">
-                    <tr class="d-flex">
+                    <tr>
                         <td class="col-2">
                             <label for="kategorie" class="col-sm-1 col-form-label"
                                 th:text="#{frageformular.label.kategorie}" />
@@ -39,7 +39,7 @@
                                 class="invalid-feedback" />
                         </td>
                     </tr>
-                    <tr class="d-flex">
+                    <tr>
                         <td class="col-2">
                             <label for="frage" class="col-sm-1 col-form-label" th:text="#{frageformular.label.frage}" />
                         </td>
@@ -49,7 +49,7 @@
                             <p th:if="${#fields.hasErrors('frage')}" th:errors="*{frage}" class="invalid-feedback" />
                         </td>
                     </tr>
-                    <tr class="d-flex">
+                    <tr>
                         <td class="col-2">
                             <label for=richtigeAntwort class="col-sm-1 col-form-label"
                                 th:text="#{frageformular.label.richtigeAntwort}" />
@@ -61,7 +61,7 @@
                                 class="invalid-feedback" />
                         </td>
                     </tr>
-                    <tr class="d-flex">
+                    <tr>
                         <td class="col-2">
                             <label for="punkte" class="col-sm-1 col-form-label"
                                 th:text="#{frageformular.label.punkte}" />
@@ -82,7 +82,7 @@
                         class="invalid-feedback d-block" />
 
                     <div th:if="not ${#lists.isEmpty(frageformular.falschantworten)}">
-                        <tr class="d-flex" th:each="antwort, status: *{falschantworten}">
+                        <tr th:each="antwort, status: *{falschantworten}">
                             <td class="col-2">
                                 <label th:text="${status.count}" class="col-sm-1 col-form-label" />
                             </td>
@@ -93,7 +93,7 @@
                         </tr>
                     </div>
 
-                    <tr class="d-flex" th:if="${#lists.size(frageformular.falschantworten) lt MAXFALSCH}">
+                    <tr th:if="${#lists.size(frageformular.falschantworten) lt MAXFALSCH}">
                         <td class="col-2">
                             <label for="neueFalschantwort" class="col-sm-1 col-form-label"
                                 th:text="#{frageformular.label.neueFalschantwort}" />
