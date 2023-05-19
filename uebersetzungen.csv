@@ -21,3 +21,36 @@ frageliste.spalte.kategorie;Kategorie;Category;Rubriek
 frageliste.spalte.punkte;Punkte;Points;Punten
 frageliste.titel;Fragesammlung;collection of questions;verzameling van vragen
 frageliste.eintrag.loeschen;Löschen;Delete;Verwijderen
+benutzerregistrieren.benutzername;Benutzername;user name;gebruikersnaam
+benutzerregistrieren.label.submit;registrieren;register user;registreren
+benutzerregistrieren.losung;Losung;password;wachtwoord
+benutzerregistrieren.losungwiederholung;Losung bestätigen;confirm password;wachtwoord bevestigen
+benutzerregistrieren.titel;Benutzer registrieren;register user;gebruiker inschrijven
+quizformular.label.quiztitel;Titel;title;titel
+quizformular.label.submit;speichern;save;opslaan
+quizformular.titel.bearbeiten;Quiz bearbeiten;edit quiz;quiz bewerken
+quizformular.zu.quizliste;Quizliste;quiz list;quiz lijst
+quizliste.eintrag.bearbeiten;bearbeiten;edit;bewerken
+quizliste.eintrag.loeschen;löschen;delete;verwijderen
+quizliste.neues.quiz;neu;new;nieuw
+quizliste.spalte.fragen;Fragen;questions;vragen
+quizliste.spalte.id;ID;ID;ID
+quizliste.spalte.thema;Thema;topic;onderwerp
+quizliste.titel;Quizliste;quiz list;quiz lijst
+nav.frageliste;Fragen;questions;vragen
+nav.quizliste;Quizze;quizes;quizes
+nav.kategorie;Kategorien;categories;rubrieken
+kategorieliste.titel;Kategorien;categories;rubrieken
+kategorieliste.spalte.id;ID;ID;ID
+kategorieliste.spalte.name;Name;name;naam
+kategorieliste.spalte.beschreibung;Beschreibung;description;omschrijving
+kategorieliste.neue.kategorie;Neue Kategorie;new category;nieuwe rubriek
+kategorieformular.titel;Kategorie [{0}] bearbeiten;edit category [{0}];rubriek [{0}] bewerken
+kategorieformular.label.name;Name;name;naam
+kategorieformular.label.beschreibung;Beschreibung;description;omschrijving
+kategorieformular.label.submit;speichern;save;opslaan
+kategorieliste.eintrag.bearbeiten;bearbeiten;edit;bewerken
+kategorieliste.eintrag.loeschen;löschen;delete;verwijderen
+kategorieliste.spalte.anzahlfragen;Fragen;questions;vragen
+kategorieformular.frageliste.titel;Fragen;questions;vragen
+
