@@ -23,7 +23,7 @@ public class QuizServiceImpl implements QuizService {
     @Override
     public List<Quiz> holeAlleQuizes() {
         logger.info("Hole alle Quizes.");
-        return quizRepo.findAll(Sort.by("kategorie", "punkte"));
+        return quizRepo.findAll(Sort.by("thema"));
     }
 
     @Override

@@ -12,6 +12,9 @@ public class QuizFormular {
     @NotBlank
     private String thema;
 
+    @NotBlank
+    private String quiztitel;
+
     private int anzahl;
 
     public void toQuiz(Quiz q) {
@@ -27,6 +30,12 @@ public class QuizFormular {
         this.thema = q.getThema();
     }
 
+    public String getQuiztitel() {
+        return quiztitel;
+    }
+    public void setQuiztitel(String quiztitel) {
+        this.quiztitel = quiztitel;
+    }
     public int getAnzahl() {
         return anzahl;
     }

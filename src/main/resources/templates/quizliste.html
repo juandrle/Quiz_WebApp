@@ -17,6 +17,7 @@
                 <a th:href="@{?sprache=de}" class="nav-item nav-link">DE</a>
                 <a th:href="@{?sprache=en}" class="nav-item nav-link">EN</a>
                 <a th:href="@{?sprache=nl}" class="nav-item nav-link">NL</a>
+                <a th:href="@{/frage}" class="nav-item nav-link">Fragen</a>
             </div>
         </nav>
 
@@ -44,7 +45,7 @@
             </tr>
         </table>
 
-        <a th:href="@{/quiz/0}" class="btn btn-primary" th:text="#{frageliste.neues.quiz}" />
+        <a th:href="@{/quiz/0}" class="btn btn-primary" th:text="#{quizliste.neues.quiz}" />
 </body>
 
 </html>
