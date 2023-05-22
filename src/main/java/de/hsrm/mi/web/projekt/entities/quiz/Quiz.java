@@ -32,6 +32,13 @@ public class Quiz {
 
     private int anzahl;
 
+    public long getId() {
+        return id;
+    }
+    public long getVersion() {
+        return version;
+    }
+
     public int getAnzahl() {
         return anzahl;
     }

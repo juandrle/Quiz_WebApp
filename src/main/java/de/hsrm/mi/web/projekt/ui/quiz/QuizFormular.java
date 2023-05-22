@@ -3,6 +3,7 @@ package de.hsrm.mi.web.projekt.ui.quiz;
 import java.util.List;
 
 import de.hsrm.mi.web.projekt.entities.frage.Frage;
+import de.hsrm.mi.web.projekt.entities.quiz.Quiz;
 import jakarta.validation.constraints.NotBlank;
 
 public class QuizFormular {
@@ -12,6 +13,19 @@ public class QuizFormular {
     private String thema;
 
     private int anzahl;
+
+    public void toQuiz(Quiz q) {
+        // befuellt q mit Formularinhalt
+        q.setAnzahl(anzahl);
+        q.setFragen(fragen);
+        q.setThema(thema);
+    }
+    public void fromQuiz(Quiz q) {
+        // befuellt Formularinhalt aus q
+        this.anzahl = q.getAnzahl();
+        this.fragen = q.getFragen();
+        this.thema = q.getThema();
+    }
 
     public int getAnzahl() {
         return anzahl;
