@@ -42,6 +42,8 @@ public class Frage implements Serializable {
     @Max(17)
     private Integer punkte;
 
+    private boolean covered;
+
     @ElementCollection
     // Problem: NotEmpty wird beim aller ersten Submit einer neuen Falschantwort
     // angezeigt
@@ -49,6 +51,12 @@ public class Frage implements Serializable {
     @Verschieden(message = "{frageformular.fehler.falschantworten.duplikate}")
     private List<String> falschantworten;
 
+    public boolean isCovered() {
+        return covered;
+    }
+    public void setCovered(boolean covered) {
+        this.covered = covered;
+    }
     public long getId() {
         return id;
     }
