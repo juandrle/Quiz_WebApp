@@ -39,7 +39,7 @@
             </table>
             <table class="table table-hover">
                 <tr th:each="fr : ${frageliste}">
-                    <td><input type="checkbox"/></td>
+                    <td><input type="checkbox" th:value="${fr.id}" th:field="*{fragen}"/></td>
                     <td th:text="${fr.id}" />
                     <td th:text="${fr.kategorie}" />
                     <td th:text="${fr.fragetext}" />

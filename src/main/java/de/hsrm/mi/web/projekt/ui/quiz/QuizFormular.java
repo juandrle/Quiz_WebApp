@@ -1,16 +1,14 @@
 package de.hsrm.mi.web.projekt.ui.quiz;
 
-import java.util.List;
+import java.util.Collection;
+import java.util.HashSet;
 
 import de.hsrm.mi.web.projekt.entities.frage.Frage;
 import de.hsrm.mi.web.projekt.entities.quiz.Quiz;
 import jakarta.validation.constraints.NotBlank;
 
 public class QuizFormular {
-    private List<Frage> fragen;
-
-    @NotBlank
-    private String thema;
+    private Collection<Frage> fragen = new HashSet<>();
 
     @NotBlank
     private String quiztitel;
@@ -19,15 +17,16 @@ public class QuizFormular {
 
     public void toQuiz(Quiz q) {
         // befuellt q mit Formularinhalt
-        q.setAnzahl(anzahl);
+        q.setQuiztitel(quiztitel);
+        q.setAnzahl(fragen.size());
         q.setFragen(fragen);
-        q.setThema(thema);
+        
     }
     public void fromQuiz(Quiz q) {
         // befuellt Formularinhalt aus q
-        this.anzahl = q.getAnzahl();
+        this.anzahl = q.getFragen().size();
         this.fragen = q.getFragen();
-        this.thema = q.getThema();
+        this.quiztitel = q.getQuiztitel();
     }
 
     public String getQuiztitel() {
@@ -42,17 +41,12 @@ public class QuizFormular {
     public void setAnzahl(int anzahl) {
         this.anzahl = anzahl;
     }
-    public List<Frage> getFragen() {
-        return fragen;
-    }
-    public void setFragen(List<Frage> fragen) {
+    
+    public void setFragen(Collection<Frage> fragen) {
         this.fragen = fragen;
     }
-    public String getThema() {
-        return thema;
-    }
-    public void setThema(String thema) {
-        this.thema = thema;
+    public Collection<Frage> getFragen() {
+        return fragen;
     }
     
 }

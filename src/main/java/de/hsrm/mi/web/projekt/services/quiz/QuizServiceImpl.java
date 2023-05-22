@@ -6,7 +6,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import de.hsrm.mi.web.projekt.entities.quiz.Quiz;
 import de.hsrm.mi.web.projekt.entities.quiz.QuizRepository;
@@ -16,14 +15,14 @@ public class QuizServiceImpl implements QuizService {
     Logger logger = LoggerFactory.getLogger(QuizServiceImpl.class);
     private QuizRepository quizRepo;
 
-    @Autowired
+    
     public QuizServiceImpl(QuizRepository quizRepo) {
         this.quizRepo = quizRepo;
     }
     @Override
     public List<Quiz> holeAlleQuizes() {
         logger.info("Hole alle Quizes.");
-        return quizRepo.findAll(Sort.by("thema"));
+        return quizRepo.findAll(Sort.by("quiztitel"));
     }
 
     @Override

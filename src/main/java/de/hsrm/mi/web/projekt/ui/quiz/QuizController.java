@@ -63,9 +63,10 @@ public class QuizController {
         Quiz quiz = new Quiz();
 
         if(n > 0) {
-
-            quiz = quizService.holeQuizMitId(n).get();
-            quizForm.fromQuiz(quiz);
+            if(!quizService.holeQuizMitId(n).isPresent()){
+                quiz = quizService.holeQuizMitId(n).get();
+                quizForm.fromQuiz(quiz);
+        } else return "redirect:/quiz";
         }
 
         m.addAttribute("quizformular", quizForm);
@@ -90,7 +91,7 @@ public class QuizController {
             quiz = quizService.speichereQuiz(quiz);
             m.addAttribute("quiz", quiz);
 
-            return "redirect:/quiz/" + quiz.getId();
+            return "redirect:/quiz";
         } catch (RuntimeException e) {
             String errorMessage = "Failed to save Quiz: ";
             m.addAttribute("info", errorMessage + e.getMessage());

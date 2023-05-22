@@ -32,14 +32,14 @@
             </tr>
             <tr th:each="q : ${quizliste}">
                 <td th:text="${q.id}" />
-                <td th:text="${q.thema}" />
+                <td th:text="${q.quiztitel}" />
                 <td th:text="${q.anzahl}" />
                 <td>
                     <a th:href="@{/quiz/{id}(id=${q.id})}" class="btn btn-primary"
                         th:text="#{quizliste.eintrag.bearbeiten}" />
                 </td>
                 <td>
-                    <a th:href="@{/quiz/{id}/del(id=${fr.id})}" class="btn btn-primary"
+                    <a th:href="@{/quiz/{id}/del(id=${q.id})}" class="btn btn-primary"
                         th:text="#{quizliste.eintrag.loeschen}" />
                 </td>
             </tr>
