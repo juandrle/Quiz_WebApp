@@ -63,7 +63,7 @@ public class QuizController {
         Quiz quiz = new Quiz();
 
         if(n > 0) {
-            if(!quizService.holeQuizMitId(n).isPresent()){
+            if(quizService.holeQuizMitId(n).isPresent()){
                 quiz = quizService.holeQuizMitId(n).get();
                 quizForm.fromQuiz(quiz);
         } else return "redirect:/quiz";
