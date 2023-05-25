@@ -1,52 +1,47 @@
 package de.hsrm.mi.web.projekt.ui.quiz;
 
-import java.util.Collection;
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import de.hsrm.mi.web.projekt.entities.frage.Frage;
 import de.hsrm.mi.web.projekt.entities.quiz.Quiz;
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 
 public class QuizFormular {
-    private Collection<Frage> fragen = new HashSet<>();
+    @NotEmpty
+    private String name;
 
-    @NotBlank
-    private String quiztitel;
+    @NotEmpty
+    private List<Frage> fragen;
 
-    private int anzahl;
-
-    public void toQuiz(Quiz q) {
-        // befuellt q mit Formularinhalt
-        q.setQuiztitel(quiztitel);
-        q.setAnzahl(fragen.size());
-        q.setFragen(fragen);
-        
-    }
-    public void fromQuiz(Quiz q) {
-        // befuellt Formularinhalt aus q
-        this.anzahl = q.getFragen().size();
-        this.fragen = q.getFragen();
-        this.quiztitel = q.getQuiztitel();
+    public QuizFormular() {
+        this.fragen = new ArrayList<>();
     }
 
-    public String getQuiztitel() {
-        return quiztitel;
+    public void fromQuiz(Quiz quiz) {
+        this.name = quiz.getName();
+        this.fragen = (List<Frage>) quiz.getFragen();
     }
-    public void setQuiztitel(String quiztitel) {
-        this.quiztitel = quiztitel;
+
+    public void toQuiz(Quiz quiz) {
+        quiz.setName(name);
+        quiz.setFragen(fragen);
     }
-    public int getAnzahl() {
-        return anzahl;
+
+    public String getName() {
+        return name;
     }
-    public void setAnzahl(int anzahl) {
-        this.anzahl = anzahl;
+
+    public void setName(String name) {
+        this.name = name;
     }
-    
-    public void setFragen(Collection<Frage> fragen) {
-        this.fragen = fragen;
-    }
-    public Collection<Frage> getFragen() {
+
+    public List<Frage> getFragen() {
         return fragen;
     }
-    
+
+    public void setFragen(List<Frage> fragen) {
+        this.fragen = fragen;
+    }
+
 }

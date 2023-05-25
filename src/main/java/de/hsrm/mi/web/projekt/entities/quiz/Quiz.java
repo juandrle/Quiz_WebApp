@@ -4,57 +4,58 @@ import java.util.Collection;
 import java.util.HashSet;
 
 import de.hsrm.mi.web.projekt.entities.frage.Frage;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Version;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
-
-
-
 
 @Entity
 public class Quiz {
-
     @Id
     @GeneratedValue
-   private long id; 
+    private long id;
+
     @Version
-   private long version;
+    private long version;
 
-   @ManyToMany
-   @NotEmpty
-   private Collection<Frage> fragen = new HashSet<>();
+    @NotEmpty
+    @Column(unique = true)
+    private String name;
 
-    @NotBlank
-    private String quiztitel;
+    @ManyToMany
+    private Collection<Frage> fragen = new HashSet<>();
 
-    private int anzahl;
+    private int anzahlFragen;
+
+    public int getAnzahlFragen() {
+        this.anzahlFragen = fragen.size();
+        return anzahlFragen;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Collection<Frage> getFragen() {
+        return fragen;
+    }
+
+    public void setFragen(Collection<Frage> fragen) {
+        this.fragen = fragen;
+    }
 
     public long getId() {
         return id;
     }
+
     public long getVersion() {
         return version;
-    }
-    public String getQuiztitel() {
-        return quiztitel;
-    }
-    public void setQuiztitel(String quiztitel) {
-        this.quiztitel = quiztitel;
-    }
-    public int getAnzahl() {
-        return anzahl;
-    }
-    public void setAnzahl(int anzahl) {
-        this.anzahl = anzahl;
-    }
-    public Collection<Frage> getFragen() {
-        return fragen;
-    }
-    public void setFragen(Collection<Frage> fragen) {
-        this.fragen = fragen;
     }
 }

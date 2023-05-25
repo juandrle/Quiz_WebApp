@@ -2,8 +2,10 @@ package de.hsrm.mi.web.projekt.services.quiz;
 
 import java.util.List;
 import java.util.Optional;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -15,34 +17,35 @@ public class QuizServiceImpl implements QuizService {
     Logger logger = LoggerFactory.getLogger(QuizServiceImpl.class);
     private QuizRepository quizRepo;
 
-    
-    public QuizServiceImpl(QuizRepository quizRepo) {
-        this.quizRepo = quizRepo;
+    @Autowired
+    public QuizServiceImpl(QuizRepository katRepo) {
+        this.quizRepo = katRepo;
     }
+
     @Override
-    public List<Quiz> holeAlleQuizes() {
-        logger.info("Hole alle Quizes.");
-        return quizRepo.findAll(Sort.by("quiztitel"));
+    public List<Quiz> holeAlleQuizzes() {
+        logger.info("Hole alle Quizzes.");
+        return quizRepo.findAll(Sort.by("name"));
     }
 
     @Override
     public Optional<Quiz> holeQuizMitId(long id) {
         logger.info("Hole Quiz mit ID: " + id);
 
-        Optional<Quiz> q = quizRepo.findById(id);
+        Optional<Quiz> f = quizRepo.findById(id);
 
-        if (q.isPresent()) {
+        if (f.isPresent()) {
             logger.info("Quiz mit ID " + id + " gefunden.");
         } else {
             logger.info("Quiz mit ID " + id + " nicht gefunden.");
         }
-        return q;
+        return f;
     }
 
     @Override
-    public Quiz speichereQuiz(Quiz q) {
-        logger.info("Speichere Quiz: " + q);
-        Quiz s = quizRepo.save(q);
+    public Quiz speichereQuiz(Quiz f) {
+        logger.info("Speichere Quiz: " + f);
+        Quiz s = quizRepo.save(f);
         return s;
     }
 
@@ -51,5 +54,5 @@ public class QuizServiceImpl implements QuizService {
         logger.info("Lösche Quiz mit ID: " + id);
         quizRepo.deleteById(id);
     }
-    
+
 }

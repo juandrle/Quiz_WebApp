@@ -6,11 +6,11 @@ import java.util.Optional;
 import de.hsrm.mi.web.projekt.entities.quiz.Quiz;
 
 public interface QuizService {
-    List<Quiz> holeAlleQuizes();
+    List<Quiz> holeAlleQuizzes();
 
     public Optional<Quiz> holeQuizMitId(long id);
 
-    Quiz speichereQuiz(Quiz q);
+    Quiz speichereQuiz(Quiz f);
 
     void loescheQuizMitId(long id);
 }
