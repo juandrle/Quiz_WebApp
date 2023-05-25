@@ -1,17 +1,20 @@
 propertyname;de;en;nl
+nav.frageliste;Fragen;Questions;Vragen
+nav.quizliste;Quizze;Quizes;Quizes
+nav.kategorie;Kategorien;Categories;Rubrieken
 frageformular.titel.neuefrage;Neue Frage; New Question; Nieuwe Vraag
 frageformular.titel.bearbeiten;Bearbeite Frage Nr. {0};Edit question No. {0};Vraag {0} bewerken
 frageformular.titel.falschantworten;Falsche Antworten (max. {0});Wrong answers (max. {0});Verkeerde antwoorden  (max. {0})
-frageformular.fragetext;bitte geben Sie eine Frage ein;please enter a question;geef en vraag aan, aub.
-frageformular.kategorie;bitte wählen Sie eine Kategorie für Ihre Frage;please choose a category for your question;kies een categorie voor uw vraag
+frageformular.fragetext;Bitte geben Sie eine Frage ein;Please enter a question;Geef en vraag aan, aub.
+frageformular.kategorie;Bitte wählen Sie eine Kategorie für Ihre Frage;Please choose a category for your question;Kies een categorie voor uw vraag
 frageformular.label.kategorie;Kategorie;Category;Rubriek
 frageformular.label.fragetext;Frage;Question;Vraag
 frageformular.label.richtigeAntwort;Richtig;Correct;Juist
 frageformular.label.punkte;Punkte;Points;Punten
 frageformular.label.neueFalschantwort;Neu;New;Nieuw
 frageformular.label.submit;Abschicken;Send;Verzenden
-frageformular.fehler.falschantworten.leer;bitte geben Sie mindestens eine Falschantwort an;please enter at least one wrong choice;geef ten minste een verkeerd antwoord
-frageformular.fehler.falschantworten.duplikate;bitte geben Sie unterschiedliche Antworten ein;please enter different choices;geef verschillende antwoorden, aub
+frageformular.fehler.falschantworten.leer;Bitte geben Sie mindestens eine Falschantwort an;Please enter at least one wrong choice;Geef ten minste een verkeerd antwoord
+frageformular.fehler.falschantworten.duplikate;Bitte geben Sie unterschiedliche Antworten ein;Please enter different choices;Geef verschillende antwoorden, aub
 frageformular.zu.frageliste;Frageliste;List of questions;Vragenlijst
 frageliste.eintrag.bearbeiten;Bearbeiten;Edit;Bewerken
 frageliste.neue.frage;Neue Frage;New question;Nieuwe vraag
@@ -19,5 +22,43 @@ frageliste.spalte.fragetext;Frage;Question;Vraag
 frageliste.spalte.id;ID;ID;ID
 frageliste.spalte.kategorie;Kategorie;Category;Rubriek
 frageliste.spalte.punkte;Punkte;Points;Punten
-frageliste.titel;Fragesammlung;collection of questions;verzameling van vragen
+frageliste.titel;Fragesammlung;Collection of questions;Verzameling van vragen
 frageliste.eintrag.loeschen;Löschen;Delete;Verwijderen
+benutzerregistrieren.benutzername;Benutzername;User name;Gebruikersnaam
+benutzerregistrieren.label.submit;Registrieren;Register user;Registreren
+benutzerregistrieren.losung;Losung;Password;Wachtwoord
+benutzerregistrieren.losungwiederholung;Losung bestätigen;Confirm password;Wachtwoord bevestigen
+benutzerregistrieren.titel;Benutzer registrieren;Register user;Gebruiker inschrijven
+quizformular.label.titel;Titel;Title;Titel
+quizformular.label.submit;Speichern;Save;Opslaan
+quizformular.titel.bearbeiten;Quiz bearbeiten: {0};Edit quiz: {0};Quiz bewerken: {0}
+quizformular.titel.neu;Neues Quiz;New quiz;Niewue quiz
+quizformular.titel.fragen;Fragen;Questions;Vragen 
+quizformular.fragen.label.kategorie;Kategorie;Category;Rubriek
+quizformular.fragen.label.fragetext;Frage;Question;Vraag
+quizformular.fragen.label.punkte;Punkte;Points;Punten
+quizformular.zu.quizliste;Quizliste;Quiz list;Quiz lijst
+quizliste.eintrag.bearbeiten;Bearbeiten;Edit;Bewerken
+quizliste.eintrag.loeschen;Löschen;Delete;Verwijderen
+quizliste.neues.quiz;Neues Quiz;New Quiz;Nieuwe quiz
+quizliste.spalte.fragen;Fragen;Questions;Vragen
+quizliste.spalte.id;ID;ID;ID
+quizliste.spalte.thema;Thema;Topic;Onderwerp
+quizliste.titel;Quizliste;Quiz list;Quiz lijst
+kategorieliste.titel;Kategorien;Categories;Rubrieken
+kategorieliste.spalte.id;ID;ID;ID
+kategorieliste.spalte.name;Name;Name;Naam
+kategorieliste.spalte.fragen;Fragen;Questions;Vragen
+kategorieliste.spalte.beschreibung;Beschreibung;Description;Omschrijving
+kategorieliste.neue.kategorie;Neue Kategorie;New category;Nieuwe rubriek
+kategorieliste.eintrag.bearbeiten;Bearbeiten;Edit;Bewerken
+kategorieliste.eintrag.loeschen;Löschen;Delete;Verwijderen
+kategorieliste.spalte.anzahlfragen;Fragen;Questions;Vragen
+kategorieformular.frageliste.titel;Fragen;Questions;Vragen
+kategorieformular.titel;Kategorie bearbeiten: {0} ;Edit category: {0};Rubriek bewerken: {0} 
+kategorieformular.titel.neuekategorie;Neue Kategorie;New Category;Niewue rubriek
+kategorieformular.label.name;Name;Name;Naam
+kategorieformular.label.beschreibung;Beschreibung;Description;Omschrijving
+kategorieformular.label.submit;Speichern;Save;Opslaan
+
+

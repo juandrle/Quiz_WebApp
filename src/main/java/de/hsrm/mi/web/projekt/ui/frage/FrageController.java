@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import de.hsrm.mi.web.projekt.entities.frage.Frage;
 import de.hsrm.mi.web.projekt.services.frage.FrageServiceImpl;
+import de.hsrm.mi.web.projekt.services.kategorie.KategorieServiceImpl;
 import jakarta.validation.Valid;
 
 @Controller
@@ -26,6 +27,9 @@ public class FrageController {
 
     @Autowired
     private FrageServiceImpl frageService;
+
+    @Autowired
+    private KategorieServiceImpl katService;
 
     @ModelAttribute("frageformular")
     public void initFrageFormular(Model m) {
@@ -41,15 +45,6 @@ public class FrageController {
         return "frageliste";
     }
 
-    @GetMapping("/frage/{fragenr}/del")
-    public String getDelFrageSammlung(Model m,
-            @PathVariable("fragenr") int n) {
-
-        frageService.loescheFrageMitId(n);
-
-        return "redirect:/frage";
-    }
-
     @GetMapping("/frage/{fragenr}")
     public String getForm(Model m,
             @PathVariable("fragenr") int n,
@@ -60,6 +55,7 @@ public class FrageController {
         m.addAttribute("MAXFALSCH", MAXFALSCH);
 
         FrageFormular frageForm = new FrageFormular();
+        frageForm.setKategorien(katService.holeAlleKategorien());
         Frage frage = new Frage();
 
         if (n > 0) {
@@ -111,5 +107,20 @@ public class FrageController {
 
             return "fragebearbeiten";
         }
+    }
+
+    @GetMapping("/frage/{fragenr}/del")
+    public String deleteFrage(Model m,
+            @PathVariable("fragenr") int n) {
+
+        try {
+            frageService.loescheFrageMitId(n);
+            return "redirect:/frage";
+        } catch (RuntimeException e) {
+            String errorMessage = "Failed to delete Frage: ";
+            m.addAttribute("info", errorMessage + e.getMessage());
+            logger.info(errorMessage + e.getMessage());
+        }
+        return "frageliste";
     }
 }

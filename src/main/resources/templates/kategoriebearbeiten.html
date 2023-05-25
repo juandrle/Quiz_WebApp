@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title>Kategorie bearbeiten</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <div class="navbar-nav">
+                <a th:href="@{?sprache=de}" class="nav-item nav-link">DE</a>
+                <a th:href="@{?sprache=en}" class="nav-item nav-link">EN</a>
+                <a th:href="@{?sprache=nl}" class="nav-item nav-link">NL</a>
+                <a th:href="@{/kategorie}" th:text="#{nav.kategorie}" class="nav-item nav-link" />
+                <a th:href="@{/frage}" th:text="#{nav.frageliste}" class="nav-item nav-link" />
+                <a th:href="@{/quiz}" th:text="#{nav.quizliste}" class="nav-item nav-link" />
+            </div>
+        </nav>
+
+        <form th:action="@{#}" th:method="POST" th:object="${kategorieformular}">
+            <h1 th:if="${katid == 0}" th:text="#{kategorieformular.titel.neuekategorie}" />
+            <h1 th:if="${katid != 0}" th:text="#{kategorieformular.titel(${kategorie.name})}" />
+
+            <table class="table table-hover">
+                <tr>
+                    <td class="col-2">
+                        <label for="name" class="col-form-label" th:text="#{kategorieformular.label.name}" />
+                    </td>
+                    <td class="col-8">
+                        <input name="name" th:field="*{name}" type="text" class="form-control"
+                            th:errorclass="is-invalid">
+                        <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="invalid-feedback" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-2">
+                        <label for="beschreibung" class="col-form-label"
+                            th:text="#{kategorieformular.label.beschreibung}" />
+                    </td>
+                    <td class="col-8">
+                        <input name="beschreibung" th:field="*{beschreibung}" type="text" class="form-control"
+                            th:errorclass="is-invalid">
+                        <p th:if="${#fields.hasErrors('beschreibung')}" th:errors="*{beschreibung}"
+                            class="invalid-feedback" />
+                    </td>
+                </tr>
+            </table>
+
+            <table th:if="not ${#lists.isEmpty(kategorie.fragen)}" class="table table-hover">
+                <h3 th:text="#{kategorieformular.frageliste.titel}" />
+                <tr>
+                    <th class="col-2">ID</th>
+                    <th class="col-8">Frage</th>
+                    <th class="col-2">Punkte</th>
+                </tr>
+                <tr th:each="fr, status: ${kategorie.fragen}">
+                    <td class="col-form-label" th:text="${fr.id}" />
+                    <td>
+                        <a th:href="@{/frage/{id}(id=${fr.id})}" th:text="${fr.fragetext}" class="link-dark" />
+                    </td>
+                    <td th:text="${fr.punkte}" />
+                </tr>
+            </table>
+
+            <p th:if="${info != null}" th:text="${info}" class="invalid-feedback d-block" />
+            <input type="submit" th:value="#{kategorieformular.label.submit}" class="btn btn-primary">
+        </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

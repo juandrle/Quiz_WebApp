@@ -3,10 +3,12 @@ package de.hsrm.mi.web.projekt.entities.frage;
 import java.io.Serializable;
 import java.util.List;
 
+import de.hsrm.mi.web.projekt.entities.kategorie.Kategorie;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Version;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -25,9 +27,8 @@ public class Frage implements Serializable {
     @Version
     private long version;
 
-    @NotNull
-    @NotBlank
-    private String kategorie;
+    @ManyToOne
+    private Kategorie kategorie;
 
     @NotBlank
     @Size(min = 5, max = 80)
@@ -43,8 +44,6 @@ public class Frage implements Serializable {
     private Integer punkte;
 
     @ElementCollection
-    // Problem: NotEmpty wird beim aller ersten Submit einer neuen Falschantwort
-    // angezeigt
     @NotEmpty(message = "{frageformular.fehler.falschantworten.leer}")
     @Verschieden(message = "{frageformular.fehler.falschantworten.duplikate}")
     private List<String> falschantworten;
@@ -57,11 +56,11 @@ public class Frage implements Serializable {
         return version;
     }
 
-    public String getKategorie() {
+    public Kategorie getKategorie() {
         return kategorie;
     }
 
-    public void setKategorie(String kategorie) {
+    public void setKategorie(Kategorie kategorie) {
         this.kategorie = kategorie;
     }
 

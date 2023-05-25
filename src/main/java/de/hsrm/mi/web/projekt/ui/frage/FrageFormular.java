@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.hsrm.mi.web.projekt.entities.frage.Frage;
+import de.hsrm.mi.web.projekt.entities.kategorie.Kategorie;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -13,11 +14,11 @@ import jakarta.validation.constraints.Size;
 import validators.Verschieden;
 
 public class FrageFormular {
-    private List<String> kategorien;
+ 
+    private List<Kategorie> kategorien;
 
     @NotNull
-    @NotBlank
-    private String kategorie;
+    private Kategorie kategorie;
 
     @NotBlank
     @Size(min = 5, max = 80)
@@ -32,7 +33,6 @@ public class FrageFormular {
     @Max(17)
     private Integer punkte;
 
-    
     @NotEmpty(message = "{frageformular.fehler.falschantworten.leer}")
     @Verschieden(message = "{frageformular.fehler.falschantworten.duplikate}")
     private List<String> falschantworten;
@@ -45,13 +45,7 @@ public class FrageFormular {
         this.kategorien = new ArrayList<>();
         this.falschantworten = new ArrayList<>();
         this.neueFalschantwort = null;
-
-        kategorien.add(null);
-        kategorien.add("Allgemeines");
-        kategorien.add("Zahlen");
-        kategorien.add("Sachen");
-        kategorien.add("Orte");
-        kategorien.add("Ereignisse");
+        this.kategorie = null;
     }
 
     public void toFrage(Frage f) {
@@ -63,6 +57,10 @@ public class FrageFormular {
         f.setFalschantworten(falschantworten);
     }
 
+    public void setKategorien(List<Kategorie> kategorien) {
+        this.kategorien = kategorien;
+    }
+
     public void fromFrage(Frage f) {
         // fuellt Formularinhalt aus f
         this.kategorie = f.getKategorie();
@@ -72,16 +70,16 @@ public class FrageFormular {
         this.falschantworten = f.getFalschantworten();
     }
 
-    public List<String> getKategorien() {
+    public List<Kategorie> getKategorien() {
         return kategorien;
     }
 
-    public String getKategorie() {
+    public Kategorie getKategorie() {
         return kategorie;
     }
 
-    public void setKategorie(String katSelected) {
-        this.kategorie = katSelected;
+    public void setKategorie(Kategorie kategorie) {
+        this.kategorie = kategorie;
     }
 
     public String getFragetext() {
