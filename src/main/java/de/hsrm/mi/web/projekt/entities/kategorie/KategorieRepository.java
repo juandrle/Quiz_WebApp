@@ -1,6 +1,8 @@
 package de.hsrm.mi.web.projekt.entities.kategorie;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.List;
+
 
 /**
  * @author Ilja Tkatchev
@@ -8,4 +10,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface KategorieRepository extends JpaRepository<Kategorie, Long> {
 
+    public List<Kategorie> findByName(String name);
 }

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import de.hsrm.mi.web.projekt.entities.frage.Frage;
 import de.hsrm.mi.web.projekt.services.frage.FrageServiceImpl;
 import de.hsrm.mi.web.projekt.services.kategorie.KategorieServiceImpl;
+import de.hsrm.mi.web.projekt.services.quizdienste.FrageQuelleServiceTheTriviaAPI;
 import jakarta.validation.Valid;
 
 @Controller
@@ -30,10 +31,21 @@ public class FrageController {
 
     @Autowired
     private KategorieServiceImpl katService;
+    @Autowired
+    private FrageQuelleServiceTheTriviaAPI triviaService;
 
     @ModelAttribute("frageformular")
     public void initFrageFormular(Model m) {
         m.addAttribute("frageformular", new FrageFormular());
+    }
+    @GetMapping("/frage/quizdienst")
+    public String addFragen(Model m){
+
+        for(Frage f : triviaService.generiereNeueFragen(3))
+        frageService.speichereFrage(f);
+
+        return "redirect:/frage";
+
     }
 
     @GetMapping("/frage")
