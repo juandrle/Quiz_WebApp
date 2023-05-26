@@ -26,6 +26,9 @@ public class FrageServiceImpl implements FrageService {
         logger.info("Hole alle Fragen.");
         return frageRepo.findAll(Sort.by("kategorie", "punkte"));
     }
+    public boolean isInList(String fragetext){
+        return !frageRepo.findByFragetext(fragetext).isEmpty();
+    }
 
     @Override
     public Optional<Frage> holeFrageMitId(long id) {
@@ -46,6 +49,8 @@ public class FrageServiceImpl implements FrageService {
         logger.info("Speichere Frage: " + f);
         Frage s = frageRepo.save(f);
         return s;
+    
+
     }
 
     @Override
