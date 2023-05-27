@@ -3,6 +3,10 @@ package de.hsrm.mi.web.projekt.entities.quiz;
 import java.util.Collection;
 import java.util.HashSet;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import de.hsrm.mi.web.projekt.entities.frage.Frage;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -11,7 +15,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Version;
 import jakarta.validation.constraints.NotEmpty;
-
+@JsonIdentityInfo(
+generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @Entity
 public class Quiz {
     @Id
@@ -25,6 +30,7 @@ public class Quiz {
     @Column(unique = true)
     private String name;
 
+    @JsonIdentityReference(alwaysAsId = true)
     @ManyToMany
     private Collection<Frage> fragen = new HashSet<>();
 
