@@ -84,9 +84,8 @@ public class QuizController {
             String errorMessage = "Failed to save Quiz: ";
             m.addAttribute("info", errorMessage + e.getMessage());
             logger.info(errorMessage + e.getMessage());
-
-            return "quizbearbeiten";
         }
+        return "quizbearbeiten";
     }
 
     @GetMapping("/quiz")

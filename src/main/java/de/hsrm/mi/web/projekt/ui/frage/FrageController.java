@@ -31,21 +31,13 @@ public class FrageController {
 
     @Autowired
     private KategorieServiceImpl katService;
+
     @Autowired
     private FrageQuelleServiceTheTriviaAPI triviaService;
 
     @ModelAttribute("frageformular")
     public void initFrageFormular(Model m) {
         m.addAttribute("frageformular", new FrageFormular());
-    }
-    @GetMapping("/frage/quizdienst")
-    public String addFragen(Model m){
-
-        for(Frage f : triviaService.generiereNeueFragen(3))
-        frageService.speichereFrage(f);
-
-        return "redirect:/frage";
-
     }
 
     @GetMapping("/frage")
@@ -71,11 +63,8 @@ public class FrageController {
         Frage frage = new Frage();
 
         if (n > 0) {
-            if(frageService.holeFrageMitId(n).isPresent())
-            {
-                frage = frageService.holeFrageMitId(n).get();
-                frageForm.fromFrage(frage);
-            } else return "redirect:/frage/0";
+            frage = frageService.holeFrageMitId(n).get();
+            frageForm.fromFrage(frage);
         }
 
         m.addAttribute("frageformular", frageForm);
@@ -137,5 +126,11 @@ public class FrageController {
             logger.info(errorMessage + e.getMessage());
         }
         return "frageliste";
+    }
+
+    @GetMapping("/frage/quizdienst")
+    public String getNeueFragen(Model m) {
+        triviaService.generiereNeueFragen(3);
+        return "redirect:/frage";
     }
 }

@@ -94,7 +94,6 @@ public class KategorieController {
 
     @GetMapping("/kategorie/{katid}/del")
     public String deleteKategorie(@PathVariable("katid") int kategorieId) {
-
         // Setzt in allen Fragen mit Kategorie-ID Kategorie auf null
         // Umgeht "foreign key constraint violation error"
         katService.holeKategorieMitId(kategorieId).get().getFragen().stream().forEach(f -> f.setKategorie(null));

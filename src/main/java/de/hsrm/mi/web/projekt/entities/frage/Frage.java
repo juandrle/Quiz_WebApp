@@ -3,9 +3,13 @@ package de.hsrm.mi.web.projekt.entities.frage;
 import java.io.Serializable;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import de.hsrm.mi.web.projekt.entities.kategorie.Kategorie;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
@@ -18,6 +22,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import validators.Verschieden;
 
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @Entity
 public class Frage implements Serializable {
     @Id
@@ -27,7 +32,7 @@ public class Frage implements Serializable {
     @Version
     private long version;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Kategorie kategorie;
 
     @NotBlank

@@ -24,6 +24,7 @@ frageliste.spalte.kategorie;Kategorie;Category;Rubriek
 frageliste.spalte.punkte;Punkte;Points;Punten
 frageliste.titel;Fragesammlung;Collection of questions;Verzameling van vragen
 frageliste.eintrag.loeschen;Löschen;Delete;Verwijderen
+frageliste.neue.quizdienst;Fragen erzeugen;Generate questions;Vragen maken
 benutzerregistrieren.benutzername;Benutzername;User name;Gebruikersnaam
 benutzerregistrieren.label.submit;Registrieren;Register user;Registreren
 benutzerregistrieren.losung;Losung;Password;Wachtwoord
@@ -60,5 +61,5 @@ kategorieformular.titel.neuekategorie;Neue Kategorie;New Category;Niewue rubriek
 kategorieformular.label.name;Name;Name;Naam
 kategorieformular.label.beschreibung;Beschreibung;Description;Omschrijving
 kategorieformular.label.submit;Speichern;Save;Opslaan
-frageliste.neue.quizdienst;Fragen erzeugen;generate questions;vragen maken
+
 

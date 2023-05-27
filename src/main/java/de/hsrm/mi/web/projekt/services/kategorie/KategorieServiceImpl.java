@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +22,7 @@ public class KategorieServiceImpl implements KategorieService {
     Logger logger = LoggerFactory.getLogger(KategorieServiceImpl.class);
     private KategorieRepository katRepo;
 
-    
+    @Autowired
     public KategorieServiceImpl(KategorieRepository katRepo) {
         this.katRepo = katRepo;
     }
@@ -31,25 +32,19 @@ public class KategorieServiceImpl implements KategorieService {
         logger.info("Hole alle Kategorien.");
         return katRepo.findAll(Sort.by("name"));
     }
-    public Kategorie holeKategorieMitNamen(String name) {
-        return katRepo.findByName(name).get(0);
-    }
-    public boolean isInList(String name) {
-        return !katRepo.findByName(name).isEmpty();
-    }
 
     @Override
     public Optional<Kategorie> holeKategorieMitId(long id) {
         logger.info("Hole Kategorie mit ID: " + id);
 
-        Optional<Kategorie> f = katRepo.findById(id);
+        Optional<Kategorie> k = katRepo.findById(id);
 
-        if (f.isPresent()) {
+        if (k.isPresent()) {
             logger.info("Kategorie mit ID " + id + " gefunden.");
         } else {
             logger.info("Kategorie mit ID " + id + " nicht gefunden.");
         }
-        return f;
+        return k;
     }
 
     @Override
@@ -63,5 +58,29 @@ public class KategorieServiceImpl implements KategorieService {
     public void loescheKategorieMitId(long id) {
         logger.info("Lösche Kategorie mit ID: " + id);
         katRepo.deleteById(id);
+    }
+
+    @Override
+    public boolean existiertMitName(String name) {
+        if (katRepo.existsByName(name)) {
+            logger.info("Kategorie mit Name " + name + " existiert bereits.");
+            return true;
+        }
+        logger.info("Kategorie mit Name " + name + " existiert noch nicht.");
+        return false;
+    }
+
+    @Override
+    public Optional<Kategorie> holeKategorieMitName(String name) {
+        logger.info("Hole Kategorie mit Name: " + name);
+
+        Optional<Kategorie> k = katRepo.findByName(name);
+
+        if (k.isPresent()) {
+            logger.info("Kategorie mit Name " + name + " gefunden.");
+        } else {
+            logger.info("Kategorie mit Name " + name + " nicht gefunden.");
+        }
+        return k;
     }
 }

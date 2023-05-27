@@ -1,14 +1,15 @@
 package de.hsrm.mi.web.projekt.entities.kategorie;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import java.util.List;
+import java.util.Optional;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  * @author Ilja Tkatchev
  */
 
 public interface KategorieRepository extends JpaRepository<Kategorie, Long> {
+    boolean existsByName(String name);
 
-    public List<Kategorie> findByName(String name);
+    Optional<Kategorie> findByName(String name);
 }

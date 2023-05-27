@@ -12,5 +12,9 @@ public interface FrageService {
 
     Frage speichereFrage(Frage f);
 
+    List<Frage> speichereAlleFragen(List<Frage> fragen);
+
     void loescheFrageMitId(long id);
+
+    boolean existiertMitFragetext(String fragetext);
 }

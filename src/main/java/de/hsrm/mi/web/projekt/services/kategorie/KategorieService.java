@@ -17,4 +17,8 @@ public interface KategorieService {
     Kategorie speichereKategorie(Kategorie f);
 
     void loescheKategorieMitId(long id);
+
+    boolean existiertMitName(String name);
+
+    Optional<Kategorie> holeKategorieMitName(String name);
 }

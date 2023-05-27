@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +17,7 @@ public class FrageServiceImpl implements FrageService {
     Logger logger = LoggerFactory.getLogger(FrageServiceImpl.class);
     private FrageRepository frageRepo;
 
-    
+    @Autowired
     public FrageServiceImpl(FrageRepository frageRepo) {
         this.frageRepo = frageRepo;
     }
@@ -25,9 +26,6 @@ public class FrageServiceImpl implements FrageService {
     public List<Frage> holeAlleFragen() {
         logger.info("Hole alle Fragen.");
         return frageRepo.findAll(Sort.by("kategorie", "punkte"));
-    }
-    public boolean isInList(String fragetext){
-        return !frageRepo.findByFragetext(fragetext).isEmpty();
     }
 
     @Override
@@ -49,13 +47,26 @@ public class FrageServiceImpl implements FrageService {
         logger.info("Speichere Frage: " + f);
         Frage s = frageRepo.save(f);
         return s;
-    
-
     }
 
     @Override
     public void loescheFrageMitId(long id) {
         logger.info("Lösche Frage mit ID: " + id);
         frageRepo.deleteById(id);
+    }
+
+    @Override
+    public boolean existiertMitFragetext(String fragetext) {
+        if (frageRepo.existsByFragetext(fragetext)) {
+            logger.info("Frage mit Fragetext " + fragetext + " existiert bereits.");
+            return true;
+        }
+        logger.info("Frage mit Fragetext " + fragetext + " existiert noch nicht.");
+        return false;
+    }
+
+    @Override
+    public List<Frage> speichereAlleFragen(List<Frage> fragen) {
+        return frageRepo.saveAll(fragen);
     }
 }
