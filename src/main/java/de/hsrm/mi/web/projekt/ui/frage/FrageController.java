@@ -43,7 +43,6 @@ public class FrageController {
     @GetMapping("/frage")
     public String getFragesammlung(Model m, Locale locale) {
         m.addAttribute("sprache", locale.getDisplayLanguage());
-
         m.addAttribute("frageliste", frageService.holeAlleFragen());
 
         return "frageliste";
@@ -63,8 +62,11 @@ public class FrageController {
         Frage frage = new Frage();
 
         if (n > 0) {
-            frage = frageService.holeFrageMitId(n).get();
-            frageForm.fromFrage(frage);
+            if (frageService.holeFrageMitId(n).isPresent()) {
+                frage = frageService.holeFrageMitId(n).get();
+                frageForm.fromFrage(frage);
+            } else
+                return "redirect:/frage/0";
         }
 
         m.addAttribute("frageformular", frageForm);
