@@ -64,7 +64,7 @@ public class QuizController {
 
     @PostMapping("/quiz/{quizid}")
     public String postForm(Model m,
-            @PathVariable("quizid") int quizId,
+            @PathVariable("quizid") long quizId,
             @ModelAttribute("quiz") Quiz quiz,
             @Valid @ModelAttribute("quizformular") QuizFormular quizForm,
             BindingResult formErrors) {
