@@ -60,7 +60,7 @@ public class KategorieController {
 
     @PostMapping("/kategorie/{katid}")
     public String postForm(Model m,
-            @PathVariable("katid") int kategorieId,
+            @PathVariable("katid") long kategorieId,
             @ModelAttribute("kategorie") Kategorie kategorie,
             @Valid @ModelAttribute("kategorieformular") KategorieFormular katForm,
             BindingResult formErrors) {

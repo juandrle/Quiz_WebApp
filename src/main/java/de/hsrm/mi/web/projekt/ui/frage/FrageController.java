@@ -50,7 +50,7 @@ public class FrageController {
 
     @GetMapping("/frage/{fragenr}")
     public String getForm(Model m,
-            @PathVariable("fragenr") int n,
+            @PathVariable("fragenr") long n,    
             Locale locale) {
 
         m.addAttribute("sprache", locale.getDisplayLanguage());
@@ -77,7 +77,7 @@ public class FrageController {
 
     @PostMapping("/frage/{fragenr}")
     public String postForm(Model m,
-            @PathVariable("fragenr") int n,
+            @PathVariable("fragenr") long n,
             @ModelAttribute("frage") Frage frage,
             @Valid @ModelAttribute("frageformular") FrageFormular frageForm,
             BindingResult formErrors) {
