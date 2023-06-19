@@ -11,6 +11,10 @@ import org.springframework.stereotype.Service;
 
 import de.hsrm.mi.web.projekt.entities.quiz.Quiz;
 import de.hsrm.mi.web.projekt.entities.quiz.QuizRepository;
+import de.hsrm.mi.web.projekt.messaging.FrontendNachrichtEvent;
+import de.hsrm.mi.web.projekt.messaging.FrontendNachrichtService;
+import de.hsrm.mi.web.projekt.messaging.FrontendNachrichtEvent.MessageEventTyp;
+import de.hsrm.mi.web.projekt.messaging.FrontendNachrichtEvent.MessageOperationTyp;
 
 @Service
 public class QuizServiceImpl implements QuizService {
@@ -21,6 +25,9 @@ public class QuizServiceImpl implements QuizService {
     public QuizServiceImpl(QuizRepository quizRepo) {
         this.quizRepo = quizRepo;
     }
+
+    @Autowired
+    private FrontendNachrichtService nachrichtService;
 
     @Override
     public List<Quiz> holeAlleQuizzes() {
@@ -46,6 +53,8 @@ public class QuizServiceImpl implements QuizService {
     public Quiz speichereQuiz(Quiz f) {
         logger.info("Speichere Quiz: " + f);
         Quiz s = quizRepo.save(f);
+        nachrichtService
+                .sendEvent(new FrontendNachrichtEvent(MessageEventTyp.QUIZ, s.getId(), MessageOperationTyp.UPDATE));
         return s;
     }
 
@@ -53,6 +62,8 @@ public class QuizServiceImpl implements QuizService {
     public void loescheQuizMitId(long id) {
         logger.info("Lösche Quiz mit ID: " + id);
         quizRepo.deleteById(id);
+        nachrichtService
+                .sendEvent(new FrontendNachrichtEvent(MessageEventTyp.QUIZ, id, MessageOperationTyp.DELETE));
     }
 
 }

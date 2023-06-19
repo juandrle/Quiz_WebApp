@@ -1,21 +1,24 @@
 
 <template>
   <header>
-    <nav class="navbar navbar-dark bg-primary">
-      <a class="navbar-brand">Home</a>
+    <nav class="navbar navbar-dark bg-primary shadow-sm">
+      <RouterLink to="/" class="navbar-brand">Quizzler</RouterLink>
       <button class="btn btn-light" v-on:click="setHeader(header), setInfo(message)">Hallo</button>
     </nav>
-    <Statuszeile></Statuszeile>
-    <main>
-      <RouterView/>
+    <StatusZeile></StatusZeile>
+    <main class="container shadow mb-5">
+      <RouterView />
     </main>
   </header>
 </template>
 
 <script setup lang="ts">
 import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/js/bootstrap.min.js'
+import 'bootstrap'
+import '../../src/main/resources/static/style.css'
 import { RouterLink, RouterView } from 'vue-router'
-import Statuszeile from './components/Statuszeile.vue'
+import StatusZeile from '@/components/StatusZeile.vue'
 import { useInfo } from '@/services/InfoService'
 
 const { setHeader, setInfo } = useInfo()

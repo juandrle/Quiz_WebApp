@@ -12,11 +12,14 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import de.hsrm.mi.web.projekt.entities.frage.Frage;
 import de.hsrm.mi.web.projekt.entities.quiz.Quiz;
+import de.hsrm.mi.web.projekt.services.frage.FrageServiceImpl;
 import de.hsrm.mi.web.projekt.services.quiz.QuizServiceImpl;
 
 @RestController
@@ -27,6 +30,9 @@ public class QuizRestAPIController {
     @Autowired
     private QuizServiceImpl quizService;
 
+    @Autowired
+    private FrageServiceImpl frageService;
+
     private record QuizDTOshort(long id, String name, int anzahlFragen) {
     };
 
@@ -34,6 +40,18 @@ public class QuizRestAPIController {
     };
 
     private record FrageDTO(long id, String katname, String fragetext, List<String> alleAntworten, int punkte) {
+    };
+
+    private record AntwortDTO(long fid, String antwort) {
+    };
+
+    private record BeantwortetesQuizDTO(long qid, List<AntwortDTO> antworten) {
+    };
+
+    private record ErgebnisDTO(long fid, boolean richtig) {
+    };
+
+    private record QuizErgebnisDTO(long qid, List<ErgebnisDTO> ergebnisse) {
     };
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
@@ -73,7 +91,6 @@ public class QuizRestAPIController {
         if (!quizOpt.isPresent()) {
             return ResponseEntity.notFound().build();
         }
-
         Quiz quiz = quizOpt.get();
 
         FrageDTO frageDTO;
@@ -100,5 +117,28 @@ public class QuizRestAPIController {
         quizDTO = new QuizDTO(quiz.getId(), quiz.getName(), fragenDTO, gesamtpunkte);
 
         return ResponseEntity.ok(quizDTO);
+    }
+
+    @PostMapping(value = "/check", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<QuizErgebnisDTO> evaluateQuiz(@RequestBody BeantwortetesQuizDTO beantwortetesQuiz) {
+        Optional<Quiz> quizOpt = quizService.holeQuizMitId(beantwortetesQuiz.qid());
+
+        if (!quizOpt.isPresent()) {
+            return ResponseEntity.notFound().build();
+        }
+        Quiz quiz = quizOpt.get();
+
+        List<ErgebnisDTO> ergebnisse = new ArrayList<>();
+        QuizErgebnisDTO quizErgebnis;
+        boolean currRichtig;
+
+        for (AntwortDTO antwort : beantwortetesQuiz.antworten()) {
+            currRichtig = frageService.pruefeAntwort(antwort.fid(), antwort.antwort());
+            ergebnisse.add(new ErgebnisDTO(antwort.fid(), currRichtig));
+        }
+
+        quizErgebnis = new QuizErgebnisDTO(quiz.getId(), ergebnisse);
+
+        return ResponseEntity.ok(quizErgebnis);
     }
 }

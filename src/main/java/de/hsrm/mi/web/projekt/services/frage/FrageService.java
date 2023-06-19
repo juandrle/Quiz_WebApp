@@ -17,4 +17,6 @@ public interface FrageService {
     void loescheFrageMitId(long id);
 
     boolean existiertMitFragetext(String fragetext);
+
+    boolean pruefeAntwort(long fid, String antwort);
 }

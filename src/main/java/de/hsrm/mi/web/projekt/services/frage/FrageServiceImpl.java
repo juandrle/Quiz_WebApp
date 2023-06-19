@@ -69,4 +69,12 @@ public class FrageServiceImpl implements FrageService {
     public List<Frage> speichereAlleFragen(List<Frage> fragen) {
         return frageRepo.saveAll(fragen);
     }
+
+    @Override
+    public boolean pruefeAntwort(long fid, String antwort) {
+        boolean ergebnis = frageRepo.findById(fid).get().getRichtigeAntwort().equals(antwort);
+        logger.info(ergebnis ? "Frage mit ID " + fid + " wurde richtig beantwortet."
+                : "Frage mit ID " + fid + " wurde falsch beantwortet.");
+        return ergebnis;
+    }
 }

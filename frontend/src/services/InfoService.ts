@@ -1,4 +1,4 @@
-import { ref, reactive } from 'vue'
+import { reactive } from 'vue'
 
 // reactive() can only declare state for objects or arrays
 // ref() for primitives
@@ -17,7 +17,6 @@ export function useInfo() {
     }
 
     return {
-        // since strings are immutable, readonly by nature
         state: state,
         setHeader,
         setInfo

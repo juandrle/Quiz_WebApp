@@ -1,39 +1,61 @@
 <template>
-    <h2>Quiz Übersicht</h2>
-    <p>Suchen Sie in der Liste und wählen Sie aus diesen 3 Ihr Quiz aus:</p>
-    <input type="text" v-model="input">
-    <button @click="reset">Reset</button>
+    <h1>Quiz Übersicht</h1>
+    <p>Suchen Sie in der Liste und wählen Sie ein Quiz aus:</p>
+    <div class="input-group">
+        <input type="text" v-model="search" class="form-control">
+        <button type="reset" @click="reset" class="btn btn-primary">Reset</button>
+    </div>
     <hr>
-    <table>
-        <tr>
-            <th>Name</th>
-            <th>Fragen</th>
-        </tr>
-        <tr v-for="quizinfo in filteredListe">
-            <td><a v-bind:href="'/quiz/' + quizinfo.id">{{ quizinfo.name }}</a></td>
-            <td>{{ quizinfo.anzahlFragen }} </td>
-        </tr>
+    <table class="table table-hover caption-top">
+        <caption v-if="search.length != 0">Suchergebnisse für "{{ search }}"</caption>
+        <thead>
+            <tr>
+                <th class="col-9">Name</th>
+                <th class="col-1">Fragen</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="quiz in filteredListe" :key="quiz.id">
+                <td>
+                    <div class="d-grid gap-2">
+                        <RouterLink :to="{ path: '/quiz/' + quiz.id }" class="btn btn-transparent text-start">{{ quiz.name }}
+                        </RouterLink>
+                    </div>
+                </td>
+                <td>{{ quiz.anzahlFragen }} </td>
+            </tr>
+        </tbody>
     </table>
 </template>
 
 <script setup lang="ts">
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { useQuizService } from '@/services/QuizListeService'
-import { computed, ref } from 'vue';
+import { ref, computed, onMounted, watch } from 'vue';
 
-const { quizinfoliste } = useQuizService()
-const input = ref("")
+const { quizinfoliste, updateQuizInfoListe, startQuizLiveUpdate } = useQuizService()
+
+onMounted(async () => {
+    await updateQuizInfoListe()
+    startQuizLiveUpdate()
+})
+
+watch(quizinfoliste, (newValue, oldValue) => {
+    // do something
+})
+
+const search = ref("")
 
 const reset = () => {
-    input.value = ""
+    search.value = ""
 }
 
 const filteredListe = computed(() => {
-    const searchQuery = input.value.toLocaleLowerCase().trim()
+    const searchQuery = search.value.toLocaleLowerCase().trim()
     if (!searchQuery) {
-        return quizinfoliste
+        return quizinfoliste.value
     } else {
-        return quizinfoliste.filter((quizinfo) => quizinfo.name.toLocaleLowerCase().includes(searchQuery))
+        return quizinfoliste.value.filter((quiz) => quiz.name.toLocaleLowerCase().includes(searchQuery))
     }
 })
 

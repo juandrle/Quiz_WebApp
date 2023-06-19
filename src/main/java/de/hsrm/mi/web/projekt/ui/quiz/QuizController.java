@@ -70,6 +70,7 @@ public class QuizController {
             BindingResult formErrors) {
 
         if (formErrors.hasErrors()) {
+            m.addAttribute("fragen", frageService.holeAlleFragen());
             return "quizbearbeiten";
         }
 
