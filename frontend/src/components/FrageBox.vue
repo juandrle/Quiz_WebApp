@@ -17,7 +17,7 @@
             </div>
         </div>
         <div v-if="hasStarted" class="card-footer" :class="getStyleNoAnswer()">
-            <div v-for="antwort in props.frage.alleAntworten " :key="antwort" :class="getStyleEvaluateAnswer(antwort)"
+            <div v-for="antwort in props.frage.alleAntworten " :key="antwort.fid" :class="getStyleEvaluateAnswer(antwort)"
                 class="col form-check">
                 <input v-model="gewaehlteAntwort" :value="antwort" @change="fragebeantwortet()" :disabled="inputDisabled"
                     type="radio" class="form-check-input" />
@@ -44,7 +44,7 @@ import { computed, ref, watch } from 'vue';
 const props = withDefaults(
     defineProps<{
         frage: IFrage,
-        quizErgebnis: IQuizErgebnis,
+        quizErgebnis: IQuizErgebnis | undefined,
         antwortzeit: number
     }>(), {
     antwortzeit: undefined

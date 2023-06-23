@@ -34,7 +34,7 @@ export function useQuiz() {
 
             const antworten = Array<IAntwort>()
             beantworteteFragen.forEach((v, k) => {
-                let antwort: IAntwort = { fid: k, antwort: v }
+                const antwort: IAntwort = { fid: k, antwort: v }
                 antworten.push(antwort)
             })
 
