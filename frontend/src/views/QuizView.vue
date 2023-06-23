@@ -44,7 +44,7 @@ function merkeAbgelaufeneFrage(frageid: number) {
 
 const quizFertig = computed(() => quiz.value?.fragen.length == abgelaufeneFragen.value.length)
 
-watch(quizFertig, (newValue, oldValue) => {
+watch(quizFertig, () => {
     if (quizFertig.value) {
         checkQuiz(quiz.value!.id, beantworteteFragen)
     }

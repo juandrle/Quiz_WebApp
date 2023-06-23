@@ -1,4 +1,9 @@
 propertyname;de;en;nl
+benutzerregistrieren.benutzername;Benutzername;user name;gebruikersnaam
+benutzerregistrieren.label.submit;registrieren;register user;registreren
+benutzerregistrieren.losung;Losung;password;wachtwoord
+benutzerregistrieren.losungwiederholung;Losung bestätigen;confirm password;wachtwoord bevestigen
+benutzerregistrieren.titel;Benutzer registrieren;register user;gebruiker inschrijven
 nav.titel;Quizdienst;Quiz Service; Quiz Service
 nav.frageliste;Fragen;Questions;Vragen
 nav.quizliste;Quizze;Quizes;Quizes

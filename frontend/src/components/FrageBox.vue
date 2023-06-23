@@ -44,7 +44,7 @@ import { computed, ref, watch } from 'vue';
 const props = withDefaults(
     defineProps<{
         frage: IFrage,
-        quizErgebnis: IQuizErgebnis,
+        quizErgebnis: IQuizErgebnis | undefined,
         antwortzeit: number
     }>(), {
     antwortzeit: undefined
@@ -67,7 +67,7 @@ const timerIntervalMs = timerInterval * 1000
 
 const gewaehlteAntwort = ref("")
 
-watch(gewaehlteAntwort, (newValue, oldValue) => {
+watch(gewaehlteAntwort, () => {
     console.log(`Antwort[${props.frage.id}]: ${gewaehlteAntwort.value}`)
 })
 

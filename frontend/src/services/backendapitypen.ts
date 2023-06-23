@@ -8,7 +8,7 @@ export interface IQuizInfo {
 export interface IQuiz {
     id: number
     name: string
-    fragen: Array<IFrage>
+    fragen: readonly IFrage[]
     gesamtpunkte: number
 }
 
@@ -16,7 +16,7 @@ export interface IFrage {
     id: number
     katname: string
     fragetext: string
-    alleAntworten: Array<string>
+    alleAntworten: readonly string[]
     punkte: number
 }
 
@@ -27,7 +27,7 @@ export interface IAntwort {
 
 export interface IBeantwortetesQuiz {
     qid: number,
-    antworten: Array<IAntwort>
+    antworten: readonly IAntwort[]
 }
 
 export interface IErgebnis {
@@ -37,7 +37,7 @@ export interface IErgebnis {
 
 export interface IQuizErgebnis {
     qid: number,
-    ergebnisse: Array<IErgebnis>
+    ergebnisse: readonly IErgebnis[]
 }
 
 export interface IFrontendNachrichtEvent {

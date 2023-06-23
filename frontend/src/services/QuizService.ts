@@ -25,6 +25,7 @@ export function useQuiz() {
             console.error(err)
             setHeader("Oops")
             setInfo(err as string)
+        
         }
     }
 
@@ -34,7 +35,7 @@ export function useQuiz() {
 
             const antworten = Array<IAntwort>()
             beantworteteFragen.forEach((v, k) => {
-                let antwort: IAntwort = { fid: k, antwort: v }
+                const antwort: IAntwort = { fid: k, antwort: v }
                 antworten.push(antwort)
             })
 
