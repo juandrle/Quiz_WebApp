@@ -11,16 +11,17 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "benutzername")
 @Entity
 public class Benutzer implements Serializable {
     @Id
     @NotBlank
     private String benutzername;
+    
     @NotBlank
     @Size(min = 2, max = 80)
     private String passwort;
-
+    
     private String rolle = "USER";
     @Min(0)
     private int punkte;
