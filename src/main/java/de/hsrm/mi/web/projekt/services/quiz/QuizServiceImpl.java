@@ -31,27 +31,27 @@ public class QuizServiceImpl implements QuizService {
 
     @Override
     public List<Quiz> holeAlleQuizzes() {
-        logger.info("Hole alle Quizzes.");
+       // logger.info("Hole alle Quizzes.");
         return quizRepo.findAll(Sort.by("name"));
     }
 
     @Override
     public Optional<Quiz> holeQuizMitId(long id) {
-        logger.info("Hole Quiz mit ID: " + id);
+       // logger.info("Hole Quiz mit ID: " + id);
 
         Optional<Quiz> f = quizRepo.findById(id);
 
         if (f.isPresent()) {
-            logger.info("Quiz mit ID " + id + " gefunden.");
+           // logger.info("Quiz mit ID " + id + " gefunden.");
         } else {
-            logger.info("Quiz mit ID " + id + " nicht gefunden.");
+           // logger.info("Quiz mit ID " + id + " nicht gefunden.");
         }
         return f;
     }
 
     @Override
     public Quiz speichereQuiz(Quiz f) {
-        logger.info("Speichere Quiz: " + f);
+        //logger.info("Speichere Quiz: " + f);
         Quiz s = quizRepo.save(f);
         nachrichtService
                 .sendEvent(new FrontendNachrichtEvent(MessageEventTyp.QUIZ, s.getId(), MessageOperationTyp.UPDATE));
@@ -60,7 +60,7 @@ public class QuizServiceImpl implements QuizService {
 
     @Override
     public void loescheQuizMitId(long id) {
-        logger.info("Lösche Quiz mit ID: " + id);
+        //logger.info("Lösche Quiz mit ID: " + id);
         quizRepo.deleteById(id);
         nachrichtService
                 .sendEvent(new FrontendNachrichtEvent(MessageEventTyp.QUIZ, id, MessageOperationTyp.DELETE));

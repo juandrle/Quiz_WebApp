@@ -29,6 +29,7 @@
                 <h1 th:text="#{benutzerregistrieren.titel}" />
         
                 <table class="table table-hover">
+                    <p th:if="${info != null}" th:text="${info}" class="invalid-feedback d-block" />
                     <tr>
                         <td class="col-2">
                             <label for="benutzername" class="col-form-label" th:text="#{benutzerregistrieren.benutzername}" />
@@ -45,7 +46,7 @@
                                 th:text="#{benutzerregistrieren.losung}" />
                         </td>
                         <td class="col-8">
-                            <input name="passwort" th:field="*{passwort}" type="text" class="form-control"
+                            <input name="passwort" th:field="*{passwort}" type="password" class="form-control"
                                 th:errorclass="is-invalid">
                             <p th:if="${#fields.hasErrors('passwort')}" th:errors="*{passwort}"
                                 class="invalid-feedback" />
@@ -56,11 +57,12 @@
                             <label for="passwortwiederholung" class="col-form-label" th:text="#{benutzerregistrieren.losungwiederholung}" />
                         </td>
                         <td class="col-8">
-                            <input name="passwortwiederholung" th:field="*{passwort}" type="number" class="form-control"
+                            <input name="passwortwiederholung" th:field="*{passwortwiederholung}" type="password" class="form-control"
                                 th:errorclass="is-invalid">
                             <p th:if="${#fields.hasErrors('passwort')}" th:errors="*{passwort}" class="invalid-feedback" />
                         </td>
                     </tr>
                 </table>
-                <a th:href="@{/frage}" class="btn btn-primary" th:text="#{benutzerregistrieren.label.submit}" />
+                <input type="submit" class="btn btn-primary" th:value="#{benutzerregistrieren.label.submit}" />
+                </form>
 </body>

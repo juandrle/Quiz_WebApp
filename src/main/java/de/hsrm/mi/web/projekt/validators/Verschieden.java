@@ -1,4 +1,4 @@
-package validators;
+package de.hsrm.mi.web.projekt.validators;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -6,11 +6,11 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 import java.util.List;
 
+import de.hsrm.mi.web.projekt.validators.Verschieden.VerschiedenValidator;
 import jakarta.validation.Constraint;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import jakarta.validation.Payload;
-import validators.Verschieden.VerschiedenValidator;
 
 @Target({ ElementType.FIELD })
 @Retention(RetentionPolicy.RUNTIME)

@@ -24,44 +24,44 @@ public class FrageServiceImpl implements FrageService {
 
     @Override
     public List<Frage> holeAlleFragen() {
-        logger.info("Hole alle Fragen.");
+        //logger.info("Hole alle Fragen.");
         return frageRepo.findAll(Sort.by("kategorie", "punkte"));
     }
 
     @Override
     public Optional<Frage> holeFrageMitId(long id) {
-        logger.info("Hole Frage mit ID: " + id);
+        //logger.info("Hole Frage mit ID: " + id);
 
         Optional<Frage> f = frageRepo.findById(id);
 
         if (f.isPresent()) {
-            logger.info("Frage mit ID " + id + " gefunden.");
+            //logger.info("Frage mit ID " + id + " gefunden.");
         } else {
-            logger.info("Frage mit ID " + id + " nicht gefunden.");
+            //logger.info("Frage mit ID " + id + " nicht gefunden.");
         }
         return f;
     }
 
     @Override
     public Frage speichereFrage(Frage f) {
-        logger.info("Speichere Frage: " + f);
+        //logger.info("Speichere Frage: " + f);
         Frage s = frageRepo.save(f);
         return s;
     }
 
     @Override
     public void loescheFrageMitId(long id) {
-        logger.info("Lösche Frage mit ID: " + id);
+        //logger.info("Lösche Frage mit ID: " + id);
         frageRepo.deleteById(id);
     }
 
     @Override
     public boolean existiertMitFragetext(String fragetext) {
         if (frageRepo.existsByFragetext(fragetext)) {
-            logger.info("Frage mit Fragetext " + fragetext + " existiert bereits.");
+            //logger.info("Frage mit Fragetext " + fragetext + " existiert bereits.");
             return true;
         }
-        logger.info("Frage mit Fragetext " + fragetext + " existiert noch nicht.");
+        //logger.info("Frage mit Fragetext " + fragetext + " existiert noch nicht.");
         return false;
     }
 
@@ -73,8 +73,8 @@ public class FrageServiceImpl implements FrageService {
     @Override
     public boolean pruefeAntwort(long fid, String antwort) {
         boolean ergebnis = frageRepo.findById(fid).get().getRichtigeAntwort().equals(antwort);
-        logger.info(ergebnis ? "Frage mit ID " + fid + " wurde richtig beantwortet."
-                : "Frage mit ID " + fid + " wurde falsch beantwortet.");
+        //logger.info(ergebnis ? "Frage mit ID " + fid + " wurde richtig beantwortet."
+                //: "Frage mit ID " + fid + " wurde falsch beantwortet.");
         return ergebnis;
     }
 }

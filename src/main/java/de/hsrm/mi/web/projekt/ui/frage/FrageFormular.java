@@ -5,13 +5,13 @@ import java.util.List;
 
 import de.hsrm.mi.web.projekt.entities.frage.Frage;
 import de.hsrm.mi.web.projekt.entities.kategorie.Kategorie;
+import de.hsrm.mi.web.projekt.validators.Verschieden;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import validators.Verschieden;
 
 public class FrageFormular {
  
