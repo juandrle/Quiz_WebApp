@@ -5,9 +5,6 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import org.springframework.beans.BeanUtils;
-
-import de.hsrm.mi.web.projekt.entities.benutzer.Benutzer;
 import de.hsrm.mi.web.projekt.ui.benutzer.BenutzerFormular;
 import de.hsrm.mi.web.projekt.validators.PasswordMatch.PasswordMatchValidator;
 

@@ -4,6 +4,9 @@ import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import de.hsrm.mi.web.projekt.entities.benutzer.Benutzer;
@@ -17,6 +20,11 @@ public class BenutzerServiceImpl implements BenutzerService {
 
     public BenutzerServiceImpl(BenutzerRepository benutzerRepo) {
         this.benutzerRepo = benutzerRepo;
+    }
+
+    @Bean
+    private PasswordEncoder passwordEncoderService(){
+         return PasswordEncoderFactories.createDelegatingPasswordEncoder(); 
     }
 
     @Override
@@ -35,6 +43,8 @@ public class BenutzerServiceImpl implements BenutzerService {
     @Override
     public Benutzer speichereBenutzer(Benutzer nutzer) {
         logger.info("speichere Nutzer: " + nutzer);
+        PasswordEncoder passwordEncoder = passwordEncoderService();
+        nutzer.setPasswort(passwordEncoder.encode(nutzer.getPasswort()));
         Benutzer b = benutzerRepo.save(nutzer);
         return b;
     }
