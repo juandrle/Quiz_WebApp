@@ -7,15 +7,16 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
-@PasswordMatch(message= "Die Losungen müssen übereinstimmen")
+
 public class BenutzerFormular {
     @Id
     @NotBlank
     private String benutzername;
     @NotBlank
     @Size(min = 2, max = 80)
+    @PasswordMatch
     private String passwort;
-
+    @PasswordMatch
     private String passwortwiederholung;
 
     private String rolle = "USER";
