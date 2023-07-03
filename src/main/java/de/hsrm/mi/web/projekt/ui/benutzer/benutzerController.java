@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import de.hsrm.mi.web.projekt.entities.benutzer.Benutzer;
 import de.hsrm.mi.web.projekt.services.benutzer.BenutzerServiceImpl;
-import de.hsrm.mi.web.projekt.ui.frage.FrageFormular;
 import jakarta.validation.Valid;
 
 
@@ -55,15 +54,17 @@ public class BenutzerController {
             userForm.toBenutzer(benutzer);
             logger.info(benutzer.getBenutzername());
             try {
+
                 if(benutzerService.existiertMitBenutzername(benutzer.getBenutzername()))
-                throw new Exception("User already exists");
+                throw new Exception("Benutzername " + userForm.getBenutzername() + " ist bereits vergeben");
+                if(!userForm.getPasswort().equals(userForm.getPasswortwiederholung()))
+                throw new Exception("Passwörter stimmen nicht überein!");
 
                 benutzerService.speichereBenutzer(benutzer);
                 m.addAttribute("benutzer", benutzer);
             } catch (Exception e) {
-                String errorMessage = "Benutzername " + userForm.getBenutzername() + " ist bereits vergeben";
-                m.addAttribute("info", errorMessage);
-                logger.info(errorMessage + e.getMessage());
+                m.addAttribute("info", e.getMessage());
+                logger.info(e.getMessage());
 
             return "registrieren";
             }

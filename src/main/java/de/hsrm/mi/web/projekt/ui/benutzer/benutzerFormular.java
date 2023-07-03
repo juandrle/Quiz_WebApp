@@ -12,11 +12,11 @@ public class BenutzerFormular {
     @Id
     @NotBlank
     private String benutzername;
+    
     @NotBlank
     @Size(min = 2, max = 80)
-    @PasswordMatch
     private String passwort;
-    @PasswordMatch
+
     private String passwortwiederholung;
 
     private String rolle = "USER";
@@ -64,6 +64,9 @@ public class BenutzerFormular {
     }
     public String getPasswortwiederholung() {
         return passwortwiederholung;
+    }
+    public void setPasswortwiederholung(String passwortwiederholung) {
+        this.passwortwiederholung = passwortwiederholung;
     }
 
 }

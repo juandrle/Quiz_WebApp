@@ -59,7 +59,7 @@
                         <td class="col-8">
                             <input name="passwortwiederholung" th:field="*{passwortwiederholung}" type="password" class="form-control"
                                 th:errorclass="is-invalid">
-                            <p th:if="${#fields.hasErrors('passwort')}" th:errors="*{passwort}" class="invalid-feedback" />
+                            <p th:if="${#fields.hasErrors('passwortwiederholung')}" th:errors="*{passwortwiederholung}" class="invalid-feedback" />
                         </td>
                     </tr>
                 </table>
