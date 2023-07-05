@@ -1,7 +1,6 @@
 package de.hsrm.mi.web.projekt.ui.benutzer;
 
 import de.hsrm.mi.web.projekt.entities.benutzer.Benutzer;
-import de.hsrm.mi.web.projekt.validators.PasswordMatch;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;

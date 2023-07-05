@@ -45,9 +45,8 @@ public class BenutzerController {
             @ModelAttribute("benutzer") Benutzer benutzer,
             @Valid @ModelAttribute("benutzerformular") BenutzerFormular userForm,
             BindingResult formErrors) {
-            // checking if name already exists here warning
             if (formErrors.hasErrors()) {
-                // not sure how to get my validator out now
+            
             return "registrieren";
         }
             
@@ -65,11 +64,8 @@ public class BenutzerController {
             } catch (Exception e) {
                 m.addAttribute("info", e.getMessage());
                 logger.info(e.getMessage());
-
-            return "registrieren";
+                return "registrieren";
             }
-            
-            
     
             return "frageliste";
 }

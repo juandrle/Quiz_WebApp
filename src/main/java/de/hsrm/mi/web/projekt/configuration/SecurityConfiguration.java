@@ -34,7 +34,7 @@ public class SecurityConfiguration {
     } */
     @Order(1)
     @Bean
-    SecurityFilterChain restAPIFilterChain(HttpSecurity http) throws Exception {
+    SecurityFilterChain filterChainAPI(HttpSecurity http) throws Exception {
         http.securityMatchers(s -> s.requestMatchers("/api/**", "/stompbroker"))
         .authorizeHttpRequests(authz -> authz.anyRequest().permitAll())
         .csrf(csrf -> csrf.disable())
@@ -54,7 +54,7 @@ public class SecurityConfiguration {
                 .requestMatchers("/*/0", "/*/*/del").hasRole("CHEF")
                 .anyRequest()
                 .authenticated())
-                .formLogin(withDefaults())
+                .formLogin(withDefaults()).formLogin(in -> in.defaultSuccessUrl("/frage", true))
                 .csrf(csrf -> csrf.ignoringRequestMatchers(toH2Console()))
                 .headers(hdrs -> hdrs.frameOptions().sameOrigin())
                 .logout(withDefaults()).logout(out -> out.logoutSuccessUrl("/frage"));
